@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="encryptionRsa">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div class="content">
+        <div>Public Key</div>
+        <div th:text="${publicKey}"></div>
+        <div>Private Key</div>
+        <div th:text="${privateKey}"></div>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</div>
+</body>
+</html>

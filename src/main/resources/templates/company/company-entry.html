@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="company">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div th:replace="global/header :: menuIcon"></div>
+    <div th:replace="global/header :: menu"></div>
+    <div th:replace="global/header :: header"></div>
+    <div id="content" th:ng-init="${'initializeData(''' + entry.id + ''')'}">
+        <div class="wrapper">
+            <div class="navigation">
+                <div class="breadcrumb">
+                    <p>
+                        <a th:href="${global.setting.url.base + '/'}">Home</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>
+                        <a th:href="${global.setting.url.base + '/company/'}">Company</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>Entry</p>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <form action="" method="POST">
+                <div class="accordion">
+                    <p class="accordion-navigation" data-index="1">
+                        Detail<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content data-entry" data-index="1">
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Name </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-name" ng-keyup="checkName()" ng-model="name.value" placeholder="Name" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="name.response.class" ng-show="name.response.view">
+                                {{name.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Registration Number </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-registration-number" ng-keyup="checkRegistrationNumber()" ng-model="registrationNumber.value" placeholder="Registration Number" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="registrationNumber.response.class" ng-show="registrationNumber.response.view">
+                                {{registrationNumber.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Description </p>
+                        </div>
+                        <div class="data">
+                            <textarea name="company-description" ng-model="description.value" placeholder="Description"></textarea>
+                        </div>
+                        <div class="response">
+                            <p ng-class="description.response.class" ng-show="description.response.view">
+                                {{description.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Street Address </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-street-address" ng-model="streetAddress.value" placeholder="Street Address" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="streetAddress.response.class" ng-show="streetAddress.response.view">
+                                {{streetAddress.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>City </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-city" ng-keyup="checkCity()" ng-model="city.value" placeholder="City" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="city.response.class" ng-show="city.response.view">
+                                {{city.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>State </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-state" ng-keyup="checkState()" ng-model="state.value" placeholder="State" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="state.response.class" ng-show="state.response.view">
+                                {{state.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>ZIP code </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-zip-code" ng-keyup="checkZipCode()" ng-model="zipCode.value" placeholder="ZIP Code" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="zipCode.response.class" ng-show="zipCode.response.view">
+                                {{zipCode.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Country </p>
+                        </div>
+                        <div class="data">
+                            <md-input-container>
+                                <md-select ng-change="checkCountry()" ng-model="country.selected" placeholder="Country">
+                                    <md-option ng-repeat="data in country.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response">
+                            <p ng-class="country.response.class" ng-show="country.response.view">
+                                {{country.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Meta Title </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-meta-title" ng-model="meta.title.value" placeholder="Meta Title" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="meta.title.response.class" ng-show="meta.title.response.view">
+                                {{meta.title.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Meta Description </p>
+                        </div>
+                        <div class="data">
+                            <textarea name="company-meta-description" ng-model="meta.description.value" placeholder="Meta Description"></textarea>
+                        </div>
+                        <div class="response">
+                            <p ng-class="meta.description.response.class" ng-show="meta.description.response.view">
+                                {{meta.description.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Meta Keyword </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-meta-keyword" ng-model="meta.keyword.value" placeholder="Meta Keyword" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="meta.keyword.response.class" ng-show="meta.keyword.response.view">
+                                {{meta.keyword.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>OG Title </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-og-title" ng-model="og.title.value" placeholder="OG Title" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="og.title.response.class" ng-show="og.title.response.view">
+                                {{og.title.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>OG Description </p>
+                        </div>
+                        <div class="data">
+                            <textarea name="company-og-description" ng-model="og.description.value" placeholder="OG Description"></textarea>
+                        </div>
+                        <div class="response">
+                            <p ng-class="og.description.response.class" ng-show="og.description.response.view">
+                                {{og.description.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Sequence </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-sequence" ng-keyup="checkSequence()" ng-model="sequence.value" placeholder="Sequence" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="sequence.response.class" ng-show="sequence.response.view">
+                                {{sequence.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Status </p>
+                        </div>
+                        <div class="data">
+                            <md-input-container>
+                                <md-select ng-change="checkStatus()" ng-model="status.selected" placeholder="Status">
+                                    <md-option ng-repeat="data in status.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response">
+                            <p ng-class="status.response.class" ng-show="status.response.view">
+                                {{status.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="created.timestamp.view">
+                            <p>
+                                <span class="required"></span>Created Date </p>
+                        </div>
+                        <div class="data" ng-show="created.timestamp.view">
+                            <input name="company-created-date" ng-model="created.timestamp.value" placeholder="Created Date" readonly type="text"/>
+                        </div>
+                        <div class="response" ng-show="created.timestamp.view"></div>
+                        <div class="title" ng-show="modified.timestamp.view">
+                            <p>
+                                <span class="required"></span>Modified Date </p>
+                        </div>
+                        <div class="data" ng-show="modified.timestamp.view">
+                            <input name="company-modified-date" ng-model="modified.timestamp.value" placeholder="Modified Date" readonly type="text"/>
+                        </div>
+                        <div class="response" ng-show="modified.timestamp.view"></div>
+                    </div>
+                    <p class="accordion-navigation" data-index="2">
+                        File<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content data-entry" data-index="2">
+                        <div class="title file">
+                            <p>
+                                <span class="required"></span>Favicon </p>
+                        </div>
+                        <div class="data">
+                            <input class="company-favicon" favicon-input="files" name="company-favicon" type="file"/>
+                            <div class="file-list" ng-show="favicon.upload.view">
+                                <company-favicon-preview></company-favicon-preview>
+                            </div>
+                            <div class="upload-file" ng-click="forceUploadFavicon()">
+                                <i class="cloud-white square-15 margin-right-5"></i>Upload
+                            </div>
+                        </div>
+                        <div class="response">
+                            <p ng-class="favicon.response.class" ng-show="favicon.response.view">
+                                {{favicon.response.value}} </p>
+                        </div>
+                        <div class="title file">
+                            <p>
+                                <span class="required"></span>Logo </p>
+                        </div>
+                        <div class="data">
+                            <input class="company-logo" logo-input="files" name="company-logo" type="file"/>
+                            <div class="file-list" ng-show="logo.upload.view">
+                                <company-logo-preview></company-logo-preview>
+                            </div>
+                            <div class="upload-file" ng-click="forceUploadLogo()">
+                                <i class="cloud-white square-15 margin-right-5"></i>Upload
+                            </div>
+                        </div>
+                        <div class="response">
+                            <p ng-class="logo.response.class" ng-show="logo.response.view">
+                                {{logo.response.value}} </p>
+                        </div>
+                    </div>
+                    <p class="accordion-navigation" data-index="3">
+                        Contact<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content data-entry" data-index="3">
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Email Address </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-contact-email-address" ng-keyup="checkContactEmailAddress()" ng-model="contact.emailAddress.value" placeholder="Email Address" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="contact.emailAddress.response.class" ng-show="contact.emailAddress.response.view">
+                                {{contact.emailAddress.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Phone Number </p>
+                        </div>
+                        <div class="data">
+                            <div class="country-code">
+                                <md-input-container>
+                                    <md-select ng-model="contact.phoneNumber.countryCode.selected" placeholder="Country Code">
+                                        <md-option ng-repeat="data in contact.phoneNumber.countryCode.option" ng-value="data">
+                                            {{data.number}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div class="number">
+                                <input name="company-contact-phone-number" ng-keyup="checkContactPhoneNumber()" ng-model="contact.phoneNumber.value" placeholder="Phone Number" type="text"/>
+                            </div>
+                        </div>
+                        <div class="response">
+                            <p ng-class="contact.phoneNumber.response.class" ng-show="contact.phoneNumber.response.view">
+                                {{contact.phoneNumber.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Fax Number </p>
+                        </div>
+                        <div class="data">
+                            <div class="country-code">
+                                <md-input-container>
+                                    <md-select ng-model="contact.faxNumber.countryCode.selected" placeholder="Country Code">
+                                        <md-option ng-repeat="data in contact.faxNumber.countryCode.option" ng-value="data">
+                                            {{data.number}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div class="number">
+                                <input name="company-contact-fax-number" ng-keyup="checkContactFaxNumber()" ng-model="contact.faxNumber.value" placeholder="Fax Number" type="text"/>
+                            </div>
+                        </div>
+                        <div class="response">
+                            <p ng-class="contact.faxNumber.response.class" ng-show="contact.faxNumber.response.view">
+                                {{contact.faxNumber.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Whatsapp Number </p>
+                        </div>
+                        <div class="data">
+                            <div class="country-code">
+                                <md-input-container>
+                                    <md-select ng-model="contact.whatsappNumber.countryCode.selected" placeholder="Country Code">
+                                        <md-option ng-repeat="data in contact.whatsappNumber.countryCode.option" ng-value="data">
+                                            {{data.number}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div class="number">
+                                <input name="company-contact-whatsapp-number" ng-keyup="checkContactWhatsappNumber()" ng-model="contact.whatsappNumber.value" placeholder="Whatsapp Number" type="text"/>
+                            </div>
+                        </div>
+                        <div class="response">
+                            <p ng-class="contact.whatsappNumber.response.class" ng-show="contact.whatsappNumber.response.view">
+                                {{contact.whatsappNumber.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Line ID </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-contact-line-id" ng-keyup="checkContactLineId()" ng-model="contact.lineId.value" placeholder="Line ID" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="contact.lineId.response.class" ng-show="contact.lineId.response.view">
+                                {{contact.lineId.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Wechat ID </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-contact-wechat-id" ng-keyup="checkContactWechatId()" ng-model="contact.wechatId.value" placeholder="Wechat ID" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="contact.wechatId.response.class" ng-show="contact.wechat.response.view">
+                                {{contact.wechatId.response.value}} </p>
+                        </div>
+                    </div>
+                    <p class="accordion-navigation" data-index="4">
+                        Setting<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content data-entry" data-index="4">
+                        <div class="title">
+                            <p><span class="required"></span>Email Activation</p>
+                        </div>
+                        <div class="data">
+                            <md-switch aria-label="Email Activation" class="md-warn" ng-change="initializeSwitch()" ng-false-value="false" ng-model="activation.email.value" ng-true-value="true">
+                                {{activation.email.name}}
+                            </md-switch>
+                        </div>
+                        <div class="response"></div>
+                        <div class="title">
+                            <p><span class="required"></span>SMS Activation</p>
+                        </div>
+                        <div class="data">
+                            <md-switch aria-label="SMS Activation" class="md-warn" ng-change="initializeSwitch()" ng-false-value="false" ng-model="activation.sms.value" ng-true-value="true">
+                                {{activation.sms.name}}
+                            </md-switch>
+                        </div>
+                        <div class="response"></div>
+                    </div>
+                    <p class="accordion-navigation" data-index="5">
+                        Transaction<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content data-entry" data-index="5">
+                        <div class="title">
+                            <p><span class="required"></span>Deposit Amount</p>
+                        </div>
+                        <div class="data-range">
+                            <input name="company-deposit-amount-minimum" ng-keyup="checkDepositAmount()" ng-model="deposit.amount.minimum.value" placeholder="Deposit Amount Minimum" type="text"/>
+                            <input name="company-deposit-amount-maximum" ng-keyup="checkDepositAmount()" ng-model="deposit.amount.maximum.value" placeholder="Deposit Amount Maximum" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="deposit.amount.response.class" ng-show="deposit.amount.response.view">
+                                {{deposit.amount.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Deposit Average Time </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-deposit-average-time" ng-keyup="checkDepositAverageTime()" ng-model="deposit.averageTime.value" placeholder="Deposit Average Time" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="deposit.averageTime.response.class" ng-show="deposit.averageTime.response.view">
+                                {{deposit.AverageTime.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p><span class="required"></span>Withdrawal Amount</p>
+                        </div>
+                        <div class="data-range">
+                            <input name="company-withdrawal-amount-minimum" ng-keyup="checkWithdrawalAmount()" ng-model="withdrawal.amount.minimum.value" placeholder="Withdrawal Amount Minimum" type="text"/>
+                            <input name="company-withdrawal-amount-maximum" ng-keyup="checkWithdrawalAmount()" ng-model="withdrawal.amount.maximum.value" placeholder="Withdrawal Amount Maximum" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="withdrawal.amount.response.class" ng-show="withdrawal.amount.response.view">
+                                {{withdrawal.amount.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Withdrawal Average Time </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-withdrawal-average-time" ng-keyup="checkWithdrawalAverageTime()" ng-model="withdrawal.averageTime.value" placeholder="Withdrawal Average Time" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="withdrawal.averageTime.response.class" ng-show="withdrawal.averageTime.response.view">
+                                {{withdrawal.AverageTime.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p><span class="required"></span>Transfer Amount</p>
+                        </div>
+                        <div class="data-range">
+                            <input name="company-transfer-amount-minimum" ng-keyup="checkTransferAmount()" ng-model="transfer.amount.minimum.value" placeholder="Transfer Amount Minimum" type="text"/>
+                            <input name="company-transfer-amount-maximum" ng-keyup="checkTransferAmount()" ng-model="transfer.amount.maximum.value" placeholder="Transfer Amount Maximum" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="transfer.amount.response.class" ng-show="transfer.amount.response.view">
+                                {{transfer.amount.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Transfer Average Time </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-transfer-average-time" ng-keyup="checkTransferAverageTime()" ng-model="transfer.averageTime.value" placeholder="Transfer Average Time" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="transfer.averageTime.response.class" ng-show="transfer.averageTime.response.view">
+                                {{transfer.AverageTime.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p><span class="required"></span>Checkout Amount</p>
+                        </div>
+                        <div class="data-range">
+                            <input name="company-checkout-amount-minimum" ng-keyup="checkCheckoutAmount()" ng-model="checkout.amount.minimum.value" placeholder="Checkout Amount Minimum" type="text"/>
+                            <input name="company-checkout-amount-maximum" ng-keyup="checkCheckoutAmount()" ng-model="checkout.amount.maximum.value" placeholder="Checkout Amount Maximum" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="checkout.amount.response.class" ng-show="checkout.amount.response.view">
+                                {{checkout.amount.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Checkout Average Time </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-checkout-average-time" ng-keyup="checkCheckoutAverageTime()" ng-model="checkout.averageTime.value" placeholder="Checkout Average Time" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="checkout.averageTime.response.class" ng-show="checkout.averageTime.response.view">
+                                {{checkout.AverageTime.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p><span class="required"></span>Add To Cart Amount</p>
+                        </div>
+                        <div class="data-range">
+                            <input name="company-add-to-cart-amount-minimum" ng-keyup="checkAddToCartAmount()" ng-model="addToCart.amount.minimum.value" placeholder="Add To Cart Amount Minimum" type="text"/>
+                            <input name="company-add-to-cart-amount-maximum" ng-keyup="checkAddToCartAmount()" ng-model="addToCart.amount.maximum.value" placeholder="Add To Cart Amount Maximum" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="addToCart.amount.response.class" ng-show="addToCart.amount.response.view">
+                                {{addToCart.amount.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Add To Cart Average Time </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-add-to-cart-average-time" ng-keyup="checkAddToCartAverageTime()" ng-model="addToCart.averageTime.value" placeholder="Add To Cart Average Time" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="addToCart.averageTime.response.class" ng-show="addToCart.averageTime.response.view">
+                                {{addToCart.AverageTime.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p><span class="required"></span>Adjustment Amount</p>
+                        </div>
+                        <div class="data-range">
+                            <input name="company-adjustment-amount-minimum" ng-keyup="checkAdjustmentAmount()" ng-model="adjustment.amount.minimum.value" placeholder="Adjustment Amount Minimum" type="text"/>
+                            <input name="company-adjustment-amount-maximum" ng-keyup="checkAdjustmentAmount()" ng-model="adjustment.amount.maximum.value" placeholder="Adjustment Amount Maximum" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="adjustment.amount.response.class" ng-show="adjustment.amount.response.view">
+                                {{adjustment.amount.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Adjustment Average Time </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-adjustment-average-time" ng-keyup="checkAdjustmentAverageTime()" ng-model="adjustment.averageTime.value" placeholder="Adjustment Average Time" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="adjustment.averageTime.response.class" ng-show="adjustment.averageTime.response.view">
+                                {{adjustment.AverageTime.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p><span class="required"></span>Internal Amount</p>
+                        </div>
+                        <div class="data-range">
+                            <input name="company-internal-amount-minimum" ng-keyup="checkInternalAmount()" ng-model="internal.amount.minimum.value" placeholder="Internal Amount Minimum" type="text"/>
+                            <input name="company-internal-amount-maximum" ng-keyup="checkInternalAmount()" ng-model="internal.amount.maximum.value" placeholder="Internal Amount Maximum" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="internal.amount.response.class" ng-show="internal.amount.response.view">
+                                {{internal.amount.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Internal Average Time </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-internal-average-time" ng-keyup="checkInternalAverageTime()" ng-model="internal.averageTime.value" placeholder="Internal Average Time" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="internal.averageTime.response.class" ng-show="internal.averageTime.response.view">
+                                {{internal.AverageTime.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p><span class="required"></span>Expense Amount</p>
+                        </div>
+                        <div class="data-range">
+                            <input name="company-expense-amount-minimum" ng-keyup="checkExpenseAmount()" ng-model="expense.amount.minimum.value" placeholder="Expense Amount Minimum" type="text"/>
+                            <input name="company-expense-amount-maximum" ng-keyup="checkExpenseAmount()" ng-model="expense.amount.maximum.value" placeholder="Expense Amount Maximum" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="expense.amount.response.class" ng-show="expense.amount.response.view">
+                                {{expense.amount.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Expense Average Time </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-expense-average-time" ng-keyup="checkExpenseAverageTime()" ng-model="expense.averageTime.value" placeholder="Expense Average Time" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="expense.averageTime.response.class" ng-show="expense.averageTime.response.view">
+                                {{expense.AverageTime.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p><span class="required"></span>Fee Amount</p>
+                        </div>
+                        <div class="data-range">
+                            <input name="company-fee-amount-minimum" ng-keyup="checkFeeAmount()" ng-model="fee.amount.minimum.value" placeholder="Fee Amount Minimum" type="text"/>
+                            <input name="company-fee-amount-maximum" ng-keyup="checkFeeAmount()" ng-model="fee.amount.maximum.value" placeholder="Fee Amount Maximum" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="fee.amount.response.class" ng-show="fee.amount.response.view">
+                                {{fee.amount.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Fee Average Time </p>
+                        </div>
+                        <div class="data">
+                            <input name="company-fee-average-time" ng-keyup="checkFeeAverageTime()" ng-model="fee.averageTime.value" placeholder="Fee Average Time" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="fee.averageTime.response.class" ng-show="fee.averageTime.response.view">
+                                {{fee.AverageTime.response.value}} </p>
+                        </div>
+                    </div>
+                    <p class="accordion-navigation" data-index="6">
+                        Maintenance<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content data-entry" data-index="6">
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Finish </p>
+                        </div>
+                        <div class="data">
+                            <input class="date-time-picker" name="company-maintenance-finish" ng-model="maintenance.finish.value" placeholder="Maintenance Finish" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="maintenance.finish.response.class" ng-show="maintenance.finish.response.view">
+                                {{maintenance.finish.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Next </p>
+                        </div>
+                        <div class="data">
+                            <input class="date-time-picker" name="company-maintenance-next" ng-model="maintenance.next.value" placeholder="Maintenance Next" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="maintenance.next.response.class" ng-show="maintenance.next.response.view">
+                                {{maintenance.next.response.value}} </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="button">
+                    <button class="yellow" name="company-edit" ng-click="edit($event)" th:if="${not #strings.isEmpty(entry.id)}">
+                        <i class="pencil-white square-15 margin-right-5"></i>Edit
+                    </button>
+                    <button class="green" name="company-insert" ng-click="insert($event)" th:if="${#strings.isEmpty(entry.id)}">
+                        <i class="plus-white square-15 margin-right-5"></i>Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,413 @@
+/*==================== Basic ====================*/
+/*==================== Content ====================*/
+div.navigation .action button.initialize-information {
+    display: block;
+    float: right;
+    padding: 0 20px;
+    width: 180px;
+}
+
+div.navigation .action button.coin-information {
+    display: block;
+    float: right;
+    padding: 0 20px;
+    width: 180px;
+}
+
+div.wrapper .filter form.filter {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-gap: 10px;
+    grid-template-columns: 180px 760px 300px;
+}
+
+div.filter .filter div.title,
+div.filter .filter div.data,
+div.filter .filter div.response {
+    opacity: 1;
+    transform: translateX(0);
+    transition-duration: 0.2s;
+}
+
+div.filter .filter div.title.ng-hide,
+div.filter .filter div.data.ng-hide,
+div.filter .filter div.response.ng-hide {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+form.filter .title p {
+    font-weight: 600;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 10px 0 0;
+    text-align: right;
+}
+
+form.filter .data input,
+form.filter .data textarea {
+    display: block;
+    width: 740px;
+}
+
+div.data md-radio-group md-radio-button {
+    float: left;
+    margin: 6px 20px 6px 0;
+}
+
+form.filter .response p {
+    border-radius: 5px;
+    float: right;
+    font-weight: 600;
+    line-height: 32px;
+    padding: 0 10px;
+    margin: 0;
+    max-width: 280px;
+}
+
+div.filter .filter div.action {
+    grid-column: 1/3;
+    margin: 10px 0 0 0;
+}
+
+form.filter .action button {
+    display: block;
+}
+
+form.filter .action button.load-list {
+    float: left;
+    margin: 0 10px 0 190px;
+    padding: 0 20px;
+    width: 150px;
+}
+
+@media only screen and (max-width: 359px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.navigation .action button.coin-information {
+        float: none;
+        margin: 0 auto;
+    }
+
+    div.wrapper .filter form.filter {
+        grid-template-columns: 280px;
+    }
+
+    form.filter .title p {
+        margin: 0;
+        text-align: left;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 260px;
+    }
+
+    form.filter .response p {
+        float: left;
+    }
+
+    div.filter .filter div.action {
+        grid-column: 1/2;
+    }
+
+    form.filter .action button.load-list {
+        float: none;
+        margin: 0 auto 10px auto;
+    }
+
+    div.content .data-list th:nth-child(3),
+    div.content .data-list td:nth-child(3) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 360px) and (max-width: 479px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.navigation .action button.coin-information {
+        float: none;
+        margin: 0 auto;
+    }
+
+    div.wrapper .filter form.filter {
+        grid-template-columns: 320px;
+    }
+
+    form.filter .title p {
+        margin: 0;
+        text-align: left;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 300px;
+    }
+
+    form.filter .response p {
+        float: left;
+    }
+
+    div.filter .filter div.action {
+        grid-column: 1/2;
+    }
+
+    form.filter .action button.load-list {
+        float: none;
+        margin: 0 auto 10px auto;
+    }
+
+    div.content .data-list th:nth-child(3),
+    div.content .data-list td:nth-child(3) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 599px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 440px;
+    }
+
+    form.filter .title p {
+        margin: 0;
+        text-align: left;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 420px;
+    }
+
+    form.filter .response p {
+        float: left;
+    }
+
+    div.filter .filter div.action {
+        grid-column: 1/2;
+    }
+
+    form.filter .action button.load-list {
+        float: none;
+        margin: 0 auto 10px auto;
+    }
+
+}
+
+@media only screen and (min-width: 600px) and (max-width: 639px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 560px;
+    }
+
+    form.filter .title p {
+        margin: 0;
+        text-align: left;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 540px;
+    }
+
+    form.filter .response p {
+        float: left;
+    }
+
+    div.filter .filter div.action {
+        grid-column: 1/2;
+    }
+
+    form.filter .action button.load-list {
+        float: none;
+        margin: 0 auto 10px auto;
+    }
+
+}
+
+@media only screen and (min-width: 640px) and (max-width: 767px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 600px;
+    }
+
+    form.filter .title p {
+        margin: 0;
+        text-align: left;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 580px;
+    }
+
+    form.filter .response p {
+        float: left;
+    }
+
+    div.filter .filter div.action {
+        grid-column: 1/2;
+    }
+
+    form.filter .action button.load-list {
+        float: none;
+        margin: 0 auto 10px auto;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 799px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 180px 538px;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 498px;
+    }
+
+    div.filter .filter div.response {
+        grid-column: 1/3;
+    }
+
+}
+
+@media only screen and (min-width: 800px) and (max-width: 899px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 180px 570px;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 550px;
+    }
+
+    div.filter .filter div.response {
+        grid-column: 1/3;
+    }
+
+}
+
+@media only screen and (min-width: 900px) and (max-width: 979px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 180px 670px;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 650px;
+    }
+
+    div.filter .filter div.response {
+        grid-column: 1/3;
+    }
+
+}
+
+@media only screen and (min-width: 980px) and (max-width: 1023px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 180px 750px;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 730px;
+    }
+
+    div.filter .filter div.response {
+        grid-column: 1/3;
+    }
+
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 180px 794px;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 774px;
+    }
+
+    div.filter .filter div.response {
+        grid-column: 1/3;
+    }
+
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1359px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 180px 710px 300px;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 690px;
+    }
+
+}
+
+@media only screen and (min-width: 1360px) and (max-width: 1599px) {
+
+    /* Not set yet */
+
+}
+
+@media only screen and (min-width: 1600px) and (max-width: 1919px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 180px 960px 300px;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 940px;
+    }
+
+}
+
+@media only screen and (min-width: 1920px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.wrapper .filter form.filter {
+        grid-template-columns: 180px 1260px 300px;
+    }
+
+    form.filter .data input,
+    form.filter .data textarea {
+        width: 1240px;
+    }
+
+}

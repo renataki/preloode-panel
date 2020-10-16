@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="transaction">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div th:replace="global/header :: menuIcon"></div>
+    <div th:replace="global/header :: menu"></div>
+    <div th:replace="global/header :: header"></div>
+    <div id="content" th:ng-init="${'initializeData(''' + entry.id + ''')'}">
+        <div class="wrapper">
+            <div class="navigation">
+                <div class="breadcrumb">
+                    <p>
+                        <a th:href="${global.setting.url.base + '/'}">Home</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>
+                        <a th:href="${global.setting.url.base + '/transaction/'}">Transaction</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>Entry</p>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <form action="" method="POST">
+                <div class="accordion">
+                    <p class="accordion-navigation" data-index="1">
+                        Detail<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content data-entry" data-index="1">
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Type </p>
+                        </div>
+                        <div class="data">
+                            <md-input-container>
+                                <md-select ng-change="checkType()" ng-model="type.selected" placeholder="Type">
+                                    <md-option ng-repeat="data in type.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response">
+                            <p ng-class="type.response.class" ng-show="type.response.view">
+                                {{type.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="type.selected.value == 'Adjustment'">
+                            <p>
+                                <span class="required">* </span>Adjustment Type </p>
+                        </div>
+                        <div class="data" ng-show="type.selected.value == 'Adjustment'">
+                            <md-input-container>
+                                <md-select ng-change="checkAdjustmentType()" ng-model="adjustmentType.selected" placeholder="Adjustment Type">
+                                    <md-option ng-repeat="data in adjustmentType.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response" ng-show="type.selected.value == 'Adjustment'">
+                            <p ng-class="adjustmentType.response.class" ng-show="adjustmentType.response.view">
+                                {{adjustmentType.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Company </p>
+                        </div>
+                        <div class="data">
+                            <md-input-container>
+                                <md-select ng-change="checkCompany()" ng-model="company.selected" placeholder="Company">
+                                    <md-option ng-repeat="data in company.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response">
+                            <p ng-class="company.response.class" ng-show="company.response.view">
+                                {{company.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Branch </p>
+                        </div>
+                        <div class="data">
+                            <md-input-container>
+                                <md-select ng-change="checkCompanyBranch()" ng-model="company.branch.selected" placeholder="Branch">
+                                    <md-option ng-repeat="data in company.branch.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response">
+                            <p ng-class="company.branch.response.class" ng-show="company.branch.response.view">
+                                {{company.branch.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Checkout' || type.selected.value == 'Transfer' || type.selected.value == 'Withdrawal'">
+                            <p>
+                                <span class="required">* </span>From User </p>
+                        </div>
+                        <div class="data" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Checkout' || type.selected.value == 'Transfer' || type.selected.value == 'Withdrawal'">
+                            <md-input-container>
+                                <md-select ng-change="checkFromUser()" ng-model="from.user.selected" placeholder="From User">
+                                    <md-option ng-repeat="data in from.user.option" ng-value="data">
+                                        {{data.username}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Checkout' || type.selected.value == 'Transfer' || type.selected.value == 'Withdrawal'">
+                            <p ng-class="from.user.response.class" ng-show="from.user.response.view">
+                                {{from.user.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Checkout' || type.selected.value == 'Transfer' || type.selected.value == 'Withdrawal'">
+                            <p>
+                                <span class="required"></span>From User Account </p>
+                        </div>
+                        <div class="data" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Checkout' || type.selected.value == 'Transfer' || type.selected.value == 'Withdrawal'">
+                            <md-input-container>
+                                <md-select ng-change="checkFromUserAccount()" ng-model="from.user.account.selected" placeholder="From User Account">
+                                    <md-option ng-repeat="data in from.user.account.option" ng-value="data">
+                                        {{data.username}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Checkout' || type.selected.value == 'Transfer' || type.selected.value == 'Withdrawal'">
+                            <p ng-class="from.user.account.response.class" ng-show="from.user.account.response.view">
+                                {{from.user.account.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Deposit' || type.selected.value == 'Transfer'">
+                            <p>
+                                <span class="required">* </span>To User </p>
+                        </div>
+                        <div class="data" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Deposit' || type.selected.value == 'Transfer'">
+                            <md-input-container>
+                                <md-select ng-change="checkToUser()" ng-model="to.user.selected" placeholder="To User">
+                                    <md-option ng-repeat="data in to.user.option" ng-value="data">
+                                        {{data.username}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Deposit' || type.selected.value == 'Transfer'">
+                            <p ng-class="to.user.response.class" ng-show="to.user.response.view">
+                                {{to.user.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Deposit' || type.selected.value == 'Transfer'">
+                            <p>
+                                <span class="required"></span>To User Account </p>
+                        </div>
+                        <div class="data" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Deposit' || type.selected.value == 'Transfer'">
+                            <md-input-container>
+                                <md-select ng-change="checkToUserAccount()" ng-model="to.user.account.selected" placeholder="To User Account">
+                                    <md-option ng-repeat="data in to.user.account.option" ng-value="data">
+                                        {{data.username}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'User') || type.selected.value == 'Deposit' || type.selected.value == 'Transfer'">
+                            <p ng-class="to.user.account.response.class" ng-show="to.user.account.response.view">
+                                {{to.user.account.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Deposit' || type.selected.value == 'Expense' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <p>
+                                <span class="required">* </span>From Payment Method </p>
+                        </div>
+                        <div class="data" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Deposit' || type.selected.value == 'Expense' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <md-input-container>
+                                <md-select ng-change="checkFromPaymentMethod()" ng-model="from.payment.method.selected" placeholder="From Payment Method">
+                                    <md-option ng-repeat="data in from.payment.method.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Deposit' || type.selected.value == 'Expense' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <p ng-class="from.payment.method.response.class" ng-show="from.payment.method.response.view">
+                                {{from.payment.method.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Deposit' || type.selected.value == 'Expense' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <p>
+                                <span class="required">* </span>From Payment Account </p>
+                        </div>
+                        <div class="data" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Deposit' || type.selected.value == 'Expense' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <md-input-container>
+                                <md-select ng-change="checkFromPaymentAccount()" ng-model="from.payment.account.selected" placeholder="From Payment Account">
+                                    <md-option ng-repeat="data in from.payment.account.option" ng-value="data">
+                                        {{data.methodName != "" ? data.methodName + " - " :
+                                        ""}}{{data.name}}{{data.number != "" ? " - " + data.number : ""}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Deposit' || type.selected.value == 'Expense' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <p ng-class="from.payment.account.response.class" ng-show="from.payment.account.response.view">
+                                {{from.payment.account.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Checkout' || type.selected.value == 'Deposit' || type.selected.value == 'Income' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <p>
+                                <span class="required">* </span>To Payment Method </p>
+                        </div>
+                        <div class="data" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Checkout' || type.selected.value == 'Deposit' || type.selected.value == 'Income' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <md-input-container>
+                                <md-select ng-change="checkToPaymentMethod()" ng-model="to.payment.method.selected" placeholder="To Payment Method">
+                                    <md-option ng-repeat="data in to.payment.method.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Checkout' || type.selected.value == 'Deposit' || type.selected.value == 'Income' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <p ng-class="to.payment.method.response.class" ng-show="to.payment.method.response.view">
+                                {{to.payment.method.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Checkout' || type.selected.value == 'Deposit' || type.selected.value == 'Income' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <p>
+                                <span class="required">* </span>To Payment Account </p>
+                        </div>
+                        <div class="data" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Checkout' || type.selected.value == 'Deposit' || type.selected.value == 'Income' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <md-input-container>
+                                <md-select ng-change="checkToPaymentAccount()" ng-model="to.payment.account.selected" placeholder="To Payment Account">
+                                    <md-option ng-repeat="data in to.payment.account.option" ng-value="data">
+                                        {{data.methodName != "" ? data.methodName + " - " :
+                                        ""}}{{data.name}}{{data.number != "" ? " - " + data.number : ""}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response" ng-show="(type.selected.value == 'Adjustment' && adjustmentType.selected.value == 'Payment') || type.selected.value == 'Checkout' || type.selected.value == 'Deposit' || type.selected.value == 'Income' || type.selected.value == 'Internal' || type.selected.value == 'Withdrawal'">
+                            <p ng-class="to.payment.account.response.class" ng-show="to.payment.account.response.view">
+                                {{to.payment.account.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Amount </p>
+                        </div>
+                        <div class="data">
+                            <input name="transaction-amount-main" ng-keyup="checkAmountMain()" ng-model="amount.main.value" placeholder="Amount" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="amount.main.response.class" ng-show="amount.main.response.view">
+                                {{amount.main.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="type.selected.value != 'Adjustment'">
+                            <p>
+                                <span class="required"></span>Amount Promotion </p>
+                        </div>
+                        <div class="data" ng-show="type.selected.value != 'Adjustment'">
+                            <input name="transaction-amount-promotion" ng-keyup="checkAmountPromotion()" ng-model="amount.promotion.value" placeholder="Amount Promotion" type="text"/>
+                        </div>
+                        <div class="response" ng-show="type.selected.value != 'Adjustment'">
+                            <p ng-class="amount.promotion.response.class" ng-show="amount.promotion.response.view">
+                                {{amount.promotion.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="type.selected.value != 'Adjustment'">
+                            <p>
+                                <span class="required"></span>Additional Cost Administration </p>
+                        </div>
+                        <div class="data" ng-show="type.selected.value != 'Adjustment'">
+                            <input name="transaction-additional-cost-administration" ng-keyup="checkAdditionalCostAdministration()" ng-model="additionalCost.administration.value" placeholder="Additional Cost Administration" type="text"/>
+                        </div>
+                        <div class="response" ng-show="type.selected.value != 'Adjustment'">
+                            <p ng-class="additionalCost.administration.response.class" ng-show="additionalCost.administration.response.view">
+                                {{additionalCost.administration.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="type.selected.value != 'Adjustment'">
+                            <p>
+                                <span class="required"></span>Additional Cost Service </p>
+                        </div>
+                        <div class="data" ng-show="type.selected.value != 'Adjustment'">
+                            <input name="transaction-additional-cost-service" ng-keyup="checkAdditionalCostService()" ng-model="additionalCost.service.value" placeholder="Additional Cost Service" type="text"/>
+                        </div>
+                        <div class="response" ng-show="type.selected.value != 'Adjustment'">
+                            <p ng-class="additionalCost.service.response.class" ng-show="additionalCost.service.response.view">
+                                {{additionalCost.service.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="type.selected.value != 'Adjustment'">
+                            <p>
+                                <span class="required"></span>Additional Cost Tax </p>
+                        </div>
+                        <div class="data" ng-show="type.selected.value != 'Adjustment'">
+                            <input name="transaction-additional-cost-tax" ng-keyup="checkAdditionalCostTax()" ng-model="additionalCost.tax.value" placeholder="Additional Cost Tax" type="text"/>
+                        </div>
+                        <div class="response" ng-show="type.selected.value != 'Adjustment'">
+                            <p ng-class="additionalCost.tax.response.class" ng-show="additionalCost.tax.response.view">
+                                {{additionalCost.tax.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Reference </p>
+                        </div>
+                        <div class="data">
+                            <textarea name="transaction-reference" ng-keyup="checkReference()" ng-model="reference.value" placeholder="Reference"></textarea>
+                        </div>
+                        <div class="response">
+                            <p ng-class="reference.response.class" ng-show="reference.response.view">
+                                {{reference.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Status </p>
+                        </div>
+                        <div class="data">
+                            <md-input-container>
+                                <md-select ng-change="checkStatus()" ng-model="status.selected" placeholder="Status">
+                                    <md-option ng-repeat="data in status.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response">
+                            <p ng-class="status.response.class" ng-show="status.response.view">
+                                {{status.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="created.timestamp.view">
+                            <p>
+                                <span class="required"></span>Created Date </p>
+                        </div>
+                        <div class="data" ng-show="created.timestamp.view">
+                            <input name="third-party-account-created-date" ng-model="created.timestamp.value" placeholder="Created Date" readonly type="text"/>
+                        </div>
+                        <div class="response" ng-show="created.timestamp.view"></div>
+                        <div class="title" ng-show="modified.timestamp.view">
+                            <p>
+                                <span class="required"></span>Modified Date </p>
+                        </div>
+                        <div class="data" ng-show="modified.timestamp.view">
+                            <input name="third-party-account-modified-date" ng-model="modified.timestamp.value" placeholder="Modified Date" readonly type="text"/>
+                        </div>
+                        <div class="response" ng-show="modified.timestamp.view"></div>
+                    </div>
+                    <p class="accordion-navigation" data-index="2">
+                        File<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content data-entry" data-index="2">
+                        <div class="title file">
+                            <p>
+                                <span class="required"></span>Image </p>
+                        </div>
+                        <div class="data">
+                            <input class="transaction-image-list" image-list-input="files" multiple name="transaction-image-list" type="file"/>
+                            <div class="file-list" ng-show="imageList.upload.view">
+                                <transaction-image-list-preview></transaction-image-list-preview>
+                            </div>
+                            <div class="upload-file" ng-click="forceUploadImageList()">
+                                <i class="cloud-white square-15 margin-right-5"></i>Upload
+                            </div>
+                        </div>
+                        <div class="response">
+                            <p ng-class="imageList.response.class" ng-show="imageList.response.view">
+                                {{imageList.response.value}} </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="button">
+                    <button class="yellow" name="transaction-edit" ng-click="edit($event)" th:if="${not #strings.isEmpty(entry.id)}">
+                        <i class="pencil-white square-15 margin-right-5"></i>Edit
+                    </button>
+                    <button class="green" name="transaction-insert" ng-click="insert($event)" th:if="${#strings.isEmpty(entry.id)}">
+                        <i class="plus-white square-15 margin-right-5"></i>Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

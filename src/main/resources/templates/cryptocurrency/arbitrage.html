@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="cryptocurrencyArbitrage">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div th:replace="global/header :: menuIcon"></div>
+    <div th:replace="global/header :: menu"></div>
+    <div th:replace="global/header :: header"></div>
+    <div id="content" ng-init="initializeData()">
+        <div class="wrapper">
+            <div class="navigation">
+                <div class="breadcrumb">
+                    <p>
+                        <a th:href="${global.setting.url.base + '/'}">Home</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>
+                        <a th:href="${global.setting.url.base + '/cryptocurrency/'}">Cryptocurrency</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>Arbitrage</p>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="action"></div>
+            </div>
+            <div class="filter">
+                <form action="" class="filter" method="POST">
+                    <div class="title">
+                        <p>
+                            <span class="required">* </span>Currency </p>
+                    </div>
+                    <div class="data">
+                        <md-radio-group class="md-primary" ng-change="checkFilterCurrency()" ng-model="filter.currency.value">
+                            <md-radio-button ng-repeat="data in filter.currency.option" ng-value="currency.value">
+                                {{data.name}}
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.currency.response.class" ng-show="filter.currency.response.view">
+                            {{filter.currency.response.value}} </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <span class="required">* </span>Lot Size </p>
+                    </div>
+                    <div class="data">
+                        <input name="cryptocurrency-arbitrage-lot-size" ng-blur="initializeFilterLotSize()" ng-keyup="checkFilterLotSize()" ng-model="filter.lotSize.value" placeholder="Lot Size" type="text"/>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.lotSize.response.class" ng-show="filter.lotSize.response.view">
+                            {{filter.lotSize.response.value}} </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <span class="required"></span>Minimum Percentage </p>
+                    </div>
+                    <div class="data">
+                        <input name="cryptocurrency-arbitrage-minimum-percentage" ng-blur="initializeFilterMinimumPercentage()" ng-keyup="checkMinimumPercentage()" ng-model="filter.minimumPercentage.value" placeholder="Minimum Percentage" type="text"/>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.minimumPercentage.response.class" ng-show="filter.minimumPercentage.response.view">
+                            {{filter.minimumPercentage.response.value}} </p>
+                    </div>
+                    <div class="action">
+                        <button class="load-data-stream blue" name="cryptocurrency-arbitrage-load-data-stream" ng-click="loadDataStream($event)">
+                            <i class="refresh-white square-15 margin-right-5"></i>Load Data Stream
+                        </button>
+                        <button class="load-coin-information yellow" name="cryptocurrency-arbitrage-load-coin-information" ng-click="loadCoinInformation($event)">
+                            <i class="refresh-white square-15 margin-right-5"></i>Load Coin Information
+                        </button>
+                        <button class="run" name="cryptocurrency-arbitrage-run" ng-class="status.class" ng-click="run($event)">
+                            <i class="recycle-white square-15 margin-right-5"></i>{{status.text}}
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="content">
+                <table class="data-list">
+                    <tr>
+                        <th class="index">
+                            <p>#</p>
+                        </th>
+                        <th>
+                            <p>Buy</p>
+                        </th>
+                        <th>
+                            <p>Sell</p>
+                        </th>
+                        <th>
+                            <p>Percentage</p>
+                        </th>
+                    </tr>
+                    <tr ng-repeat="(iteration, data) in list">
+                        <td>
+                            <p>{{iteration + 1}}</p>
+                        </td>
+                        <td>
+                            <p>{{data.buy.symbol}} ({{data.buy.exchanger}})</p>
+                            <p>Price : {{data.buy.price}}</p>
+                            <p>Fee Deposit : {{data.buy.fee.deposit}} {{data.buy.asset.quote}}</p>
+                            <p>Fee Commission : {{data.buy.fee.commission}}%</p>
+                            <p>Fee Withdrawal : {{data.buy.fee.withdrawal}} {{data.buy.asset.base}}</p>
+                            <p>Lot Size : {{data.buy.credit.start}}</p>
+                        </td>
+                        <td>
+                            <p>{{data.sell.symbol}} ({{data.sell.exchanger}})</p>
+                            <p>Price : {{data.sell.price}}</p>
+                            <p>Fee Deposit : {{data.sell.fee.deposit}} {{data.sell.asset.base}}</p>
+                            <p>Fee Commission : {{data.sell.fee.commission}}%</p>
+                            <p>Fee Withdrawal : {{data.sell.fee.withdrawal}} {{data.sell.asset.quote}}</p>
+                            <p>Lot Size : {{data.sell.credit.start}}</p>
+                        </td>
+                        <td>
+                            <p>{{data.percentage}}%</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

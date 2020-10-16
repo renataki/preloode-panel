@@ -1,0 +1,145 @@
+<div class="accordion" ng-init="initializeLayout()">
+    <p class="accordion-navigation" data-index="1" ng-click="rebuild()">
+        Detail<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="1">
+        <p class="title">ID</p>
+        <div class="data">{{id.value}}</div>
+        <p class="title">Name</p>
+        <div class="data">{{name.value}}</div>
+        <p class="title">Registration Number</p>
+        <div class="data">{{registrationNumber.value}}</div>
+        <p class="title">Description</p>
+        <div class="data">{{description.value}}</div>
+        <p class="title">Street Address</p>
+        <div class="data">{{streetAddress.value}}</div>
+        <p class="title">City</p>
+        <div class="data">{{city.value}}</div>
+        <p class="title">State</p>
+        <div class="data">{{state.value}}</div>
+        <p class="title">ZIP Code</p>
+        <div class="data">{{zipCode.value}}</div>
+        <p class="title">Country</p>
+        <div class="data">{{country.value}}</div>
+        <p class="title">Meta Title</p>
+        <div class="data">{{meta.title.value}}</div>
+        <p class="title">Meta Description</p>
+        <div class="data">{{meta.description.value}}</div>
+        <p class="title">Meta Keyword</p>
+        <div class="data">{{meta.keyword.value}}</div>
+        <p class="title">OG Title</p>
+        <div class="data">{{og.title.value}}</div>
+        <p class="title">OG Description</p>
+        <div class="data">{{og.description.value}}</div>
+        <p class="title">Sequence</p>
+        <div class="data">{{sequence.value}}</div>
+        <p class="title">Status</p>
+        <div class="data">{{status.value}}</div>
+        <p class="title">Created Date</p>
+        <div class="data">{{created.timestamp.value}}</div>
+        <p class="title">Modified Date</p>
+        <div class="data">{{modified.timestamp.value}}</div>
+    </div>
+    <p class="accordion-navigation" data-index="2" ng-click="rebuild()">
+        File<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="2">
+        <p class="title file">Favicon</p>
+        <div class="file-list" ng-if="favicon.upload.view">
+            <span>
+                <img class="responsive" ng-src="{{favicon.upload.file}}">
+            </span>
+        </div>
+        <p class="title file">Logo</p>
+        <div class="file-list" ng-if="logo.upload.view">
+            <span>
+                <img class="responsive" ng-src="{{logo.upload.file}}">
+            </span>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="3" ng-click="rebuild()">
+        Contact<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="3">
+        <p class="title">Email Address</p>
+        <div class="data">{{contact.emailAddress.value}}</div>
+        <p class="title">Phone Number</p>
+        <div class="data">{{contact.phoneNumber.value}}</div>
+        <p class="title">Fax Number</p>
+        <div class="data">{{contact.faxNumber.value}}</div>
+        <p class="title">Whatsapp Number</p>
+        <div class="data">{{contact.whatsappNumber.value}}</div>
+        <p class="title">Line ID</p>
+        <div class="data">{{contact.lineId.value}}</div>
+        <p class="title">Wechat ID</p>
+        <div class="data">{{contact.wechatId.value}}</div>
+    </div>
+    <p class="accordion-navigation" data-index="4" ng-click="rebuild()">
+        Setting<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="4">
+        <p class="title">Email Activation</p>
+        <div class="data">
+            <md-switch aria-label="Email Activation" class="md-warn" ng-disabled="true" ng-false-value="false" ng-model="activation.email.value" ng-true-value="true">
+                {{activation.email.name}}
+            </md-switch>
+        </div>
+        <p class="title">SMS Activation</p>
+        <div class="data">
+            <md-switch aria-label="SMS Activation" class="md-warn" ng-disabled="true" ng-false-value="false" ng-model="activation.email.value" ng-true-value="true">
+                {{activation.sms.name}}
+            </md-switch>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="5" ng-click="rebuild()">
+        Transaction<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="5">
+        <p class="title">Deposit Amount</p>
+        <div class="data">{{deposit.amount.minimum.value}} - {{deposit.amount.maximum.value}}</div>
+        <p class="title">Deposit Average Time</p>
+        <div class="data">{{deposit.averageTime.value}}</div>
+        <p class="title">Withdrawal Amount</p>
+        <div class="data">{{withdrawal.amount.minimum.value}} - {{withdrawal.amount.maximum.value}}</div>
+        <p class="title">Withdrawal Average Time</p>
+        <div class="data">{{withdrawal.averageTime.value}}</div>
+        <p class="title">Transfer Amount</p>
+        <div class="data">{{transfer.amount.minimum.value}} - {{transfer.amount.maximum.value}}</div>
+        <p class="title">Transfer Average Time</p>
+        <div class="data">{{transfer.averageTime.value}}</div>
+        <p class="title">Checkout Amount</p>
+        <div class="data">{{checkout.amount.minimum.value}} - {{checkout.amount.maximum.value}}</div>
+        <p class="title">Checkout Average Time</p>
+        <div class="data">{{checkout.averageTime.value}}</div>
+        <p class="title">Add To Cart Amount</p>
+        <div class="data">{{addToCart.amount.minimum.value}} - {{addToCart.amount.maximum.value}}</div>
+        <p class="title">Add To Cart Average Time</p>
+        <div class="data">{{addToCart.averageTime.value}}</div>
+        <p class="title">Adjustment Amount</p>
+        <div class="data">{{adjustment.amount.minimum.value}} - {{adjustment.amount.maximum.value}}</div>
+        <p class="title">Adjustment Average Time</p>
+        <div class="data">{{adjustment.averageTime.value}}</div>
+        <p class="title">Internal Amount</p>
+        <div class="data">{{internal.amount.minimum.value}} - {{internal.amount.maximum.value}}</div>
+        <p class="title">Internal Average Time</p>
+        <div class="data">{{internal.averageTime.value}}</div>
+        <p class="title">Expense Amount</p>
+        <div class="data">{{expense.amount.minimum.value}} - {{expense.amount.maximum.value}}</div>
+        <p class="title">Expense Average Time</p>
+        <div class="data">{{expense.averageTime.value}}</div>
+        <p class="title">Fee Amount</p>
+        <div class="data">{{fee.amount.minimum.value}} - {{fee.amount.maximum.value}}</div>
+        <p class="title">Fee Average Time</p>
+        <div class="data">{{fee.averageTime.value}}</div>
+    </div>
+    <p class="accordion-navigation" data-index="6" ng-click="rebuild()">
+        Maintenance<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="6">
+        <p class="title">Finish</p>
+        <div class="data">{{maintenance.finish.value}}</div>
+        <p class="title">Next</p>
+        <div class="data">{{maintenance.next.value}}</div>
+    </div>
+    <div class="separator"></div>
+</div>

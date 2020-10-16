@@ -1,0 +1,58 @@
+<div class="accordion" ng-init="initializeLayout()">
+    <p class="accordion-navigation" data-index="1" ng-click="rebuild()">
+        Detail<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="1">
+        <p class="title">ID</p>
+        <div class="data">{{id.value}}</div>
+        <p class="title">Name</p>
+        <div class="data">{{name.value}}</div>
+        <p class="title">Description</p>
+        <div class="data">{{description.value}}</div>
+        <p class="title">Deposit Amount</p>
+        <div class="data">{{deposit.amount.start.value}} - {{deposit.amount.end.value}}</div>
+        <p class="title">Deposit Count</p>
+        <div class="data">{{deposit.count.start.value}} - {{deposit.count.end.value}}</div>
+        <p class="title">Withdrawal Amount</p>
+        <div class="data">{{withdrawal.amount.start.value}} - {{withdrawal.amount.end.value}}</div>
+        <p class="title">Withdrawal Count</p>
+        <div class="data">{{withdrawal.count.start.value}} - {{withdrawal.count.end.value}}</div>
+        <p class="title">Transaction Amount</p>
+        <div class="data">{{transaction.amount.start.value}} - {{transaction.amount.end.value}}</div>
+        <p class="title">Transaction Count</p>
+        <div class="data">{{transaction.count.start.value}} - {{transaction.count.end.value}}</div>
+        <p class="title">Sequence</p>
+        <div class="data">{{sequence.value}}</div>
+        <p class="title">Status</p>
+        <div class="data">{{status.value}}</div>
+        <p class="title">Created Date</p>
+        <div class="data">{{created.timestamp.value}}</div>
+        <p class="title">Modified Date</p>
+        <div class="data">{{modified.timestamp.value}}</div>
+    </div>
+    <p class="accordion-navigation" data-index="2" ng-click="rebuild()">
+        Company<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="2">
+        <div class="checkbox-list">
+            <div ng-repeat="data in company.option">
+                <md-checkbox ng-checked="company.idList.value.indexOf(data.id) > -1" ng-click="$event.preventDefault()">
+                    {{data.name}}
+                </md-checkbox>
+            </div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="3" ng-click="rebuild()">
+        Branch<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="3">
+        <div class="checkbox-list">
+            <div ng-repeat="data in company.branch.option">
+                <md-checkbox ng-checked="company.branch.idList.value.indexOf(data.id) > -1" ng-click="$event.preventDefault()">
+                    {{data.name}}
+                </md-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="separator"></div>
+</div>

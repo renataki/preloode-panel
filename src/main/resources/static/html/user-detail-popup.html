@@ -1,0 +1,153 @@
+<div class="accordion" ng-init="initializeLayout()">
+    <p class="accordion-navigation" data-index="1" ng-click="rebuild()">
+        Detail<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="1">
+        <p class="title">ID</p>
+        <div class="data">{{id.value}}</div>
+        <p class="title">Username</p>
+        <div class="data">{{username.value}}</div>
+        <p class="title">Password</p>
+        <div class="data">{{password.main.value}}</div>
+        <p class="title">Type</p>
+        <div class="data">{{type.value}}</div>
+        <p class="title">Role</p>
+        <div class="data">{{role.value}}</div>
+        <p class="title">Group</p>
+        <div class="data">{{group.value}}</div>
+        <p class="title">Main Credit</p>
+        <div class="data">{{credit.main.value}}</div>
+        <p class="title">Promotion Credit</p>
+        <div class="data">{{credit.promotion.value}}</div>
+        <p class="title">First Name</p>
+        <div class="data">{{name.first.value}}</div>
+        <p class="title">Middle Name</p>
+        <div class="data">{{name.middle.value}}</div>
+        <p class="title">Last Name</p>
+        <div class="data">{{name.last.value}}</div>
+        <p class="title">Gender</p>
+        <div class="data">{{gender.value}}</div>
+        <p class="title">Language</p>
+        <div class="data">{{language.value}}</div>
+        <p class="title">Street Address</p>
+        <div class="data">{{streetAddress.value}}</div>
+        <p class="title">City</p>
+        <div class="data">{{city.value}}</div>
+        <p class="title">State</p>
+        <div class="data">{{state.value}}</div>
+        <p class="title">ZIP Code</p>
+        <div class="data">{{zipCode.value}}</div>
+        <p class="title">Country</p>
+        <div class="data">{{country.value}}</div>
+        <p class="title">Reference</p>
+        <div class="data">{{reference.value}}</div>
+        <p class="title">Status</p>
+        <div class="data">{{status.value}}</div>
+        <p class="title">Created Date</p>
+        <div class="data">{{created.timestamp.value}}</div>
+        <p class="title">Modified Date</p>
+        <div class="data">{{modified.timestamp.value}}</div>
+    </div>
+    <p class="accordion-navigation" data-index="2" ng-click="rebuild()">
+        Contact<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="2">
+        <p class="title">Email Address</p>
+        <div class="data">{{contact.emailAddress.value}}</div>
+        <p class="title">Phone Number</p>
+        <div class="data">{{contact.phoneNumber.value}}</div>
+        <p class="title">Fax Number</p>
+        <div class="data">{{contact.faxNumber.value}}</div>
+        <p class="title">Whatsapp Number</p>
+        <div class="data">{{contact.whatsappNumber.value}}</div>
+        <p class="title">Line ID</p>
+        <div class="data">{{contact.lineId.value}}</div>
+        <p class="title">Wechat ID</p>
+        <div class="data">{{contact.wechatId.value}}</div>
+    </div>
+    <p class="accordion-navigation" data-index="3" ng-click="rebuild()">
+        File<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="3">
+        <p class="title file">Avatar</p>
+        <div class="file-list" ng-if="avatar.upload.view">
+            <span>
+                <img class="responsive" ng-src="{{avatar.upload.file}}">
+            </span>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="4">
+        Account<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="4">
+        <div class="input-list">
+            <div class="list-multiple" ng-repeat="(iteration, data) in account.index">
+                <div class="title">
+                    <p>
+                        <span class="required"></span>{{account.thirdParty.provider.nameList.value[iteration]}}
+                        |
+                        {{account.thirdParty.account.usernameList.value[iteration]}} </p>
+                </div>
+                <div class="data">
+                    {{account.usernameList.value[iteration]}} ({{account.creditList.value[iteration]}})
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="5" ng-click="rebuild()">
+        Payment<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content" data-index="5">
+        <div class="data-entry" ng-repeat="(iteration, data) in payment.index">
+            <p class="title">Name</p>
+            <div class="data">{{payment.nameList.value[iteration]}}</div>
+            <p class="title">Number</p>
+            <div class="data">{{payment.numberList.value[iteration]}}</div>
+            <p class="title">Branch</p>
+            <div class="data">{{payment.branchList.value[iteration]}}</div>
+            <p class="title">Method</p>
+            <div class="data">{{payment.method[iteration].value}}</div>
+            <div class="separator"></div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="6" ng-click="rebuild()">
+        Company<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="6">
+        <div class="checkbox-list">
+            <div ng-repeat="data in company.option">
+                <md-checkbox ng-checked="company.idList.value.indexOf(data.id) > -1" ng-click="$event.preventDefault()">
+                    {{data.name}}
+                </md-checkbox>
+            </div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="7" ng-click="rebuild()">
+        Branch<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="7">
+        <div class="checkbox-list">
+            <div ng-repeat="data in company.branch.option">
+                <md-checkbox ng-checked="company.branch.idList.value.indexOf(data.id) > -1" ng-click="$event.preventDefault()">
+                    {{data.name}}
+                </md-checkbox>
+            </div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="8" ng-click="rebuild()">
+        Privilege<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content" data-index="8">
+        <div class="data-entry" ng-repeat="data in privilege">
+            <p class="title"><span class="required"></span>{{data.name}}</p>
+            <div class="data-checkbox">
+                <div class="checkbox" ng-repeat="dataChild1 in data.option">
+                    <md-checkbox ng-checked="data.value.slice($index, ($index + 1)) == '7'" ng-click="$event.preventDefault()">
+                        {{dataChild1.name}}
+                    </md-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="separator"></div>
+</div>

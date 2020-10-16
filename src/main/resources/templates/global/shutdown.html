@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="shutdown">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div class="shutdown">
+        <form action="" method="post">
+            <p class="note">To get this application shutdown please click the button below.</p>
+            <button class="shutdown" name="shutdown" ng-click="shutdown($event)">Shutdown</button>
+        </form>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

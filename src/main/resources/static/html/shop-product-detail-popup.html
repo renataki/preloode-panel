@@ -1,0 +1,160 @@
+<div class="accordion" ng-init="initializeLayout()">
+    <p class="accordion-navigation" data-index="1" ng-click="rebuild()">
+        Detail<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="1">
+        <p class="title">Name</p>
+        <div class="data">{{name.value}}</div>
+        <p class="title">Type</p>
+        <div class="data">{{type.value}}</div>
+        <p class="title" ng-if="type.selected.value == 'Goods' || type.selected.value == 'Service'">Brand</p>
+        <div class="data">{{brand.value}}</div>
+        <p class="title">SKU</p>
+        <div class="data">{{sku.value}}</div>
+        <p class="title">Storage</p>
+        <div class="data">
+            <md-switch aria-label="Storage" class="md-warn" ng-disabled="true" ng-false-value="false" ng-model="storage.value" ng-true-value="true">
+                {{storage.name}}
+            </md-switch>
+        </div>
+        <p class="title" ng-if="storage.value">Stock</p>
+        <div class="data" ng-if="storage.value">{{stock.value}}</div>
+        <p class="title">Recurring</p>
+        <div class="data">
+            <md-switch aria-label="Recurring" class="md-warn" ng-disabled="true" ng-false-value="false" ng-model="recurring.value" ng-true-value="true">
+                {{recurring.name}}
+            </md-switch>
+        </div>
+        <p class="title" ng-if="!recurring.value">Price</p>
+        <div class="data" ng-if="!recurring.value">{{price.oneTime.normal.value}}</div>
+        <p class="title" ng-if="!recurring.value">Discount Price</p>
+        <div class="data" ng-if="!recurring.value">{{price.oneTime.discount.value}}</div>
+        <div class="data-multiple" ng-if="recurring.value">
+            <div class="item" ng-repeat="(iteration, data) in recurring.timeFrame">
+                <p class="title">Price {{data.name}}</p>
+                <div class="data">{{price.recurring.normalList.value[iteration]}}</div>
+                <p class="title">Discount Price {{data.name}}</p>
+                <div class="data">{{price.recurring.discountList.value[iteration]}}</div>
+            </div>
+        </div>
+        <p class="title">Description</p>
+        <div class="data" ng-bind-html="description.value"></div>
+        <p class="title">Additional Information</p>
+        <div class="data" ng-bind-html="information.value"></div>
+        <p class="title">Size Guide</p>
+        <div class="data" ng-bind-html="guide.value"></div>
+        <p class="title">URL</p>
+        <div class="data">{{url.value}}</div>
+        <p class="title">Meta Title</p>
+        <div class="data">{{meta.title.value}}</div>
+        <p class="title">Meta Description</p>
+        <div class="data">{{meta.description.value}}</div>
+        <p class="title">Meta Keyword</p>
+        <div class="data">{{meta.keyword.value}}</div>
+        <p class="title">OG Title</p>
+        <div class="data">{{og.title.value}}</div>
+        <p class="title">OG Description</p>
+        <div class="data">{{og.description.value}}</div>
+        <p class="title">Like</p>
+        <div class="data">{{like.value}}</div>
+        <p class="title">Dislike</p>
+        <div class="data">{{dislike.value}}</div>
+        <p class="title">Rate</p>
+        <div class="data">{{rate.value}}</div>
+        <p class="title">Sequence</p>
+        <div class="data">{{sequence.value}}</div>
+        <p class="title">Featured</p>
+        <div class="data">
+            <md-switch aria-label="Featured" class="md-warn" ng-disabled="true" ng-false-value="false" ng-model="featured.value" ng-true-value="true">
+                {{featured.name}}
+            </md-switch>
+        </div>
+        <p class="title">Status</p>
+        <div class="data">{{status.value}}</div>
+        <p class="title">Created Date</p>
+        <div class="data">{{created.timestamp.value}}</div>
+        <p class="title">Modified Date</p>
+        <div class="data">{{modified.timestamp.value}}</div>
+    </div>
+    <p class="accordion-navigation" data-index="2" ng-click="rebuild()">
+        File<span><i class="plus-white square-10"></i></span></p>
+    <div class="accordion-content data-entry" data-index="2">
+        <p class="title file">Thumbnail</p>
+        <div class="file-list" ng-if="thumbnailList.upload.view">
+            <span ng-repeat="data in thumbnailList.upload.file">
+                <img class="responsive" ng-src="{{data}}">
+            </span>
+        </div>
+        <p class="title file">Image</p>
+        <div class="file-list" ng-if="imageList.upload.view">
+            <span ng-repeat="data in imageList.upload.file">
+                <img class="responsive" ng-src="{{data}}">
+            </span>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="3" ng-click="rebuild()">
+        Category<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="3">
+        <div class="checkbox-list">
+            <div ng-repeat="data in category.option">
+                <p ng-bind-html="data.icon"></p>
+                <md-checkbox ng-checked="category.idList.value.indexOf(data.id) > -1" ng-click="categoryToggleCheckbox(data)">
+                    {{data.name}}
+                </md-checkbox>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="4" ng-click="rebuild()">
+        Company<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="4">
+        <div class="checkbox-list">
+            <div ng-repeat="data in company.option">
+                <md-checkbox ng-checked="company.idList.value.indexOf(data.id) > -1" ng-click="$event.preventDefault()">
+                    {{data.name}}
+                </md-checkbox>
+            </div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="5" ng-click="rebuild()">
+        Branch<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="5">
+        <div class="checkbox-list">
+            <div ng-repeat="data in company.branch.option">
+                <md-checkbox ng-checked="company.branch.idList.value.indexOf(data.id) > -1" ng-click="$event.preventDefault()">
+                    {{data.name}}
+                </md-checkbox>
+            </div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="6" ng-click="rebuild()">
+        Variant<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content" data-index="6">
+        <div class="data-entry" ng-repeat="(iteration, data) in variant.index">
+            <p class="title">Name</p>
+            <div class="data">{{variant.nameList.value[iteration]}}</div>
+            <p class="title">SKU</p>
+            <div class="data">{{variant.skuList.value[iteration]}}</div>
+            <p class="title" ng-if="storage.value">Stock</p>
+            <div class="data" ng-if="storage.value">{{variant.stockList.value[iteration]}}</div>
+            <p class="title" ng-if="!recurring.value">Price</p>
+            <div class="data" ng-if="!recurring.value">{{variant.price.oneTime.normal.value[iteration]}}</div>
+            <p class="title" ng-if="!recurring.value">Discount Price</p>
+            <div class="data" ng-if="!recurring.value">{{variant.price.oneTime.discount.value[iteration]}}</div>
+            <div class="data-multiple" ng-if="recurring.value">
+                <div class="item" ng-repeat="(iterationChild1, dataChild1) in recurring.timeFrame">
+                    <p class="title">Price {{dataChild1.name}}</p>
+                    <div class="data">{{variant.price.recurring.normalList.value[iteration][iterationChild1]}}</div>
+                    <p class="title">Discount Price {{dataChild1.name}}</p>
+                    <div class="data">{{variant.price.recurring.discountList.value[iteration][iterationChild1]}}</div>
+                </div>
+            </div>
+            <div class="separator"></div>
+        </div>
+    </div>
+    <div class="separator"></div>
+</div>

@@ -1,0 +1,49 @@
+<div class="stream" ng-if="data.start.action != '' && data.middle.action != '' && data.end.action != ''" ng-init="initializeLayout()">
+    <div class="trade">
+        <p class="symbol">{{data.start.symbol}}</p>
+        <p class="action" ng-if="data.start.action == 'Bid'">Bid Price :</p>
+        <p class="action" ng-if="data.start.action == 'Ask'">Ask Price :</p>
+        <div class="price">
+            <input name="cryptocurrency-triangular-arbitrage-start-price" ng-model="data.start.price" placeholder="Start Price" type="text"/>
+            <md-switch aria-label="Start Price Enable" class="md-warn" ng-change="initializeSwitch()" ng-false-value="false" ng-model="stream.start.price.enable.value" ng-true-value="true">
+                {{stream.start.price.enable.name}}
+            </md-switch>
+        </div>
+        <p class="lot">Lot Size :</p>
+        <p class="order">{{data.start.quantity.order}}</p>
+    </div>
+    <div class="trade">
+        <p class="symbol">{{data.middle.symbol}}</p>
+        <p class="action" ng-if="data.middle.action == 'Bid'">Bid Price :</p>
+        <p class="action" ng-if="data.middle.action == 'Ask'">Ask Price :</p>
+        <div class="price">
+            <input name="cryptocurrency-triangular-arbitrage-middle-price" ng-model="data.middle.price" placeholder="Middle Price" type="text"/>
+            <md-switch aria-label="Middle Price Enable" class="md-warn" ng-change="initializeSwitch()" ng-false-value="false" ng-model="stream.middle.price.enable.value" ng-true-value="true">
+                {{stream.middle.price.enable.name}}
+            </md-switch>
+        </div>
+        <p class="lot">Lot Size :</p>
+        <p class="order">{{data.middle.quantity.order}}</p>
+    </div>
+    <div class="trade">
+        <p class="symbol">{{data.end.symbol}}</p>
+        <p class="action" ng-if="data.end.action == 'Bid'">Bid Price :</p>
+        <p class="action" ng-if="data.end.action == 'Ask'">Ask Price :</p>
+        <div class="price">
+            <input name="cryptocurrency-triangular-arbitrage-middle-price" ng-model="data.end.price" placeholder="End Price" type="text"/>
+            <md-switch aria-label="End Price Enable" class="md-warn" ng-change="initializeSwitch()" ng-false-value="false" ng-model="stream.end.price.enable.value" ng-true-value="true">
+                {{stream.end.price.enable.name}}
+            </md-switch>
+        </div>
+        <p class="lot">Lot Size :</p>
+        <p class="order">{{data.end.quantity.order}}</p>
+    </div>
+    <div class="percentage">
+        <p>{{data.percentage}}%</p>
+    </div>
+    <div class="action">
+        <button class="run" name="triangular-arbitrage-run" ng-class="status.class" ng-click="run($event)">
+            <i class="recycle-white square-15 margin-right-5"></i>{{status.text}}
+        </button>
+    </div>
+</div>

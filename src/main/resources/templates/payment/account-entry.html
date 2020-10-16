@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="paymentAccount">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div th:replace="global/header :: menuIcon"></div>
+    <div th:replace="global/header :: menu"></div>
+    <div th:replace="global/header :: header"></div>
+    <div id="content" th:ng-init="${'initializeData(''' + entry.id + ''')'}">
+        <div class="wrapper">
+            <div class="navigation">
+                <div class="breadcrumb">
+                    <p>
+                        <a th:href="${global.setting.url.base + '/'}">Home</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>
+                        <a th:href="${global.setting.url.base + '/payment/'}">Payment</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>
+                        <a th:href="${global.setting.url.base + '/payment/account/'}">Account</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>Entry</p>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <form action="" method="POST">
+                <div class="accordion">
+                    <p class="accordion-navigation" data-index="1">
+                        Detail<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content data-entry" data-index="1">
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Name </p>
+                        </div>
+                        <div class="data">
+                            <input name="payment-account-name" ng-keyup="checkName()" ng-model="name.value" placeholder="Name" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="name.response.class" ng-show="name.response.view">
+                                {{name.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Number </p>
+                        </div>
+                        <div class="data">
+                            <input name="payment-account-number" ng-keyup="checkNumber()" ng-model="number.value" placeholder="Number" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="number.response.class" ng-show="number.response.view">
+                                {{number.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Method </p>
+                        </div>
+                        <div class="data">
+                            <md-input-container>
+                                <md-select ng-change="checkMethod()" ng-model="method.selected" placeholder="Method">
+                                    <md-option ng-repeat="data in method.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response">
+                            <p ng-class="method.response.class" ng-show="method.response.view">
+                                {{method.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Branch </p>
+                        </div>
+                        <div class="data">
+                            <input name="payment-account-branch" ng-keyup="checkBranch()" ng-model="branch.value" placeholder="Branch" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="branch.response.class" ng-show="branch.response.view">
+                                {{branch.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Credit </p>
+                        </div>
+                        <div class="data">
+                            <input name="payment-account-credit" ng-model="credit.value" placeholder="Credit" readonly type="text"/>
+                        </div>
+                        <div class="response"></div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Description </p>
+                        </div>
+                        <div class="data">
+                            <textarea name="payment-account-description" ng-keyup="checkDescription()" ng-model="description.value" placeholder="Description"></textarea>
+                        </div>
+                        <div class="response">
+                            <p ng-class="description.response.class" ng-show="description.response.view">
+                                {{description.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Username </p>
+                        </div>
+                        <div class="data">
+                            <input name="payment-account-username" ng-keyup="checkUsername()" ng-model="username.value" placeholder="Username" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="username.response.class" ng-show="username.response.view">
+                                {{username.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Password </p>
+                        </div>
+                        <div class="data">
+                            <input name="payment-account-password" ng-keyup="checkPassword()" ng-model="password.value" placeholder="Password" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="password.response.class" ng-show="password.response.view">
+                                {{password.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>PIN </p>
+                        </div>
+                        <div class="data">
+                            <input name="payment-account-pin" ng-keyup="checkPin()" ng-model="pin.value" placeholder="PIN" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="pin.response.class" ng-show="pin.response.view">
+                                {{pin.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required"></span>Sequence </p>
+                        </div>
+                        <div class="data">
+                            <input name="payment-account-sequence" ng-keyup="checkSequence()" ng-model="sequence.value" placeholder="Sequence" type="text"/>
+                        </div>
+                        <div class="response">
+                            <p ng-class="sequence.response.class" ng-show="sequence.response.view">
+                                {{sequence.response.value}} </p>
+                        </div>
+                        <div class="title">
+                            <p>
+                                <span class="required">* </span>Status </p>
+                        </div>
+                        <div class="data">
+                            <md-input-container>
+                                <md-select ng-change="checkStatus()" ng-model="status.selected" placeholder="Status">
+                                    <md-option ng-repeat="data in status.option" ng-value="data">
+                                        {{data.name}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="response">
+                            <p ng-class="status.response.class" ng-show="status.response.view">
+                                {{status.response.value}} </p>
+                        </div>
+                        <div class="title" ng-show="created.timestamp.view">
+                            <p>
+                                <span class="required"></span>Created Date </p>
+                        </div>
+                        <div class="data" ng-show="created.timestamp.view">
+                            <input name="payment-account-created-date" ng-model="created.timestamp.value" placeholder="Created Date" readonly type="text"/>
+                        </div>
+                        <div class="response" ng-show="created.timestamp.view"></div>
+                        <div class="title" ng-show="modified.timestamp.view">
+                            <p>
+                                <span class="required"></span>Modified Date </p>
+                        </div>
+                        <div class="data" ng-show="modified.timestamp.view">
+                            <input name="payment-account-modified-date" ng-model="modified.timestamp.value" placeholder="Modified Date" readonly type="text"/>
+                        </div>
+                        <div class="response" ng-show="modified.timestamp.view"></div>
+                    </div>
+                    <p class="accordion-navigation" data-index="2">
+                        File<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content data-entry" data-index="2">
+                        <div class="title file">
+                            <p>
+                                <span class="required"></span>QR Code </p>
+                        </div>
+                        <div class="data">
+                            <input class="payment-account-qr-code" name="payment-account-qr-code" qr-code-input="files" type="file"/>
+                            <div class="file-list" ng-show="qrCode.upload.view">
+                                <payment-account-qr-code-preview></payment-account-qr-code-preview>
+                            </div>
+                            <div class="upload-file" ng-click="forceUploadQrCode()">
+                                <i class="cloud-white square-15 margin-right-5"></i>Upload
+                            </div>
+                        </div>
+                        <div class="response">
+                            <p ng-class="qrCode.response.class" ng-show="qrCode.response.view">
+                                {{qrCode.response.value}} </p>
+                        </div>
+                    </div>
+                    <p class="accordion-navigation" data-index="3">
+                        Company<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content list-entry" data-index="3">
+                        <div class="checkbox-list">
+                            <div>
+                                <md-checkbox aria-label="Select All" md-indeterminate="company.idList.value.length > company.option.length && company.idList.value.length > 0" ng-checked="company.idList.value.length == company.option.length" ng-click="companyToggleAllCheckbox()">
+                                    <span ng-if="company.idList.value.length < company.option.length">Select All</span>
+                                    <span ng-if="company.idList.value.length == company.option.length">Unselect All</span>
+                                </md-checkbox>
+                            </div>
+                            <div ng-repeat="data in company.option">
+                                <md-checkbox ng-checked="company.idList.value.indexOf(data.id) > -1" ng-click="companyToggleCheckbox(data)">
+                                    {{data.name}}
+                                </md-checkbox>
+                            </div>
+                        </div>
+                        <div class="response">
+                            <p ng-class="company.response.class" ng-if="company.response.view">
+                                {{company.response.value}} </p>
+                        </div>
+                    </div>
+                    <p class="accordion-navigation" data-index="4">
+                        Branch<span><i class="plus-white square-10"></i></span>
+                    </p>
+                    <div class="accordion-content list-entry" data-index="4">
+                        <div class="checkbox-list">
+                            <div>
+                                <md-checkbox aria-label="Select All" md-indeterminate="company.branch.idList.value.length > company.branch.option.length && company.branch.idList.value.length > 0" ng-checked="company.branch.idList.value.length == company.branch.option.length" ng-click="companyBranchToggleAllCheckbox()">
+                                    <span ng-if="company.branch.idList.value.length < company.branch.option.length">Select All</span>
+                                    <span ng-if="company.branch.idList.value.length == company.branch.option.length">Unselect All</span>
+                                </md-checkbox>
+                            </div>
+                            <div ng-repeat="data in company.branch.option">
+                                <md-checkbox ng-checked="company.branch.idList.value.indexOf(data.id) > -1" ng-click="companyBranchToggleCheckbox(data)">
+                                    {{data.name}}
+                                </md-checkbox>
+                            </div>
+                        </div>
+                        <div class="response">
+                            <p ng-class="company.branch.response.class" ng-if="company.branch.response.view">
+                                {{company.branch.response.value}} </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="button">
+                    <button class="yellow" name="payment-account-edit" ng-click="edit($event)" th:if="${not #strings.isEmpty(entry.id)}">
+                        <i class="pencil-white square-15 margin-right-5"></i>Edit
+                    </button>
+                    <button class="green" name="payment-account-insert" ng-click="insert($event)" th:if="${#strings.isEmpty(entry.id)}">
+                        <i class="plus-white square-15 margin-right-5"></i>Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

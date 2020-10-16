@@ -1,0 +1,28 @@
+#content .wrapper div.profile {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-gap: 10px;
+    grid-template-columns: 300px 990px;
+}
+
+div.wrapper .profile div.detail {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-gap: 10px;
+    grid-template-columns: 180px 800px;
+}
+
+div.detail .title p {
+    font-weight: 600;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 10px 0 0;
+    overflow: hidden;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+div.detail .data p {
+    line-height: 32px;
+    margin: 0;
+}

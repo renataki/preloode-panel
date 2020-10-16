@@ -1,0 +1,26 @@
+/*==================== Basic ====================*/
+
+/*==================== Content ====================*/
+div.wrapper .content div.chart-global {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-gap: 10px 20px;
+    grid-template-columns: 1fr 545px;
+}
+
+div.chart-global .chart-action h3 {
+    margin: 0 0 20px 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+div.chart-global .chart-action svg.chart-action-pie {
+    height: 350px;
+    overflow: visible;
+    width: 545px;
+}
+
+svg.chart-action-pie g g text {
+    cursor: default;
+    font-weight: 600;
+}

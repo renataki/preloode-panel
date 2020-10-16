@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="cryptocurrency">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div th:replace="global/header :: menuIcon"></div>
+    <div th:replace="global/header :: menu"></div>
+    <div th:replace="global/header :: header"></div>
+    <div id="content" ng-init="initializeData()">
+        <div class="wrapper">
+            <div class="navigation">
+                <div class="breadcrumb">
+                    <p>
+                        <a th:href="${global.setting.url.base + '/'}">Home</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>Cryptocurrency</p>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="action">
+                    <button class="initialize-information blue" name="cryptocurrency-initialize-information" ng-click="initializeInformation($event)">
+                        <i class="refresh-white square-15 margin-right-5"></i>Initialize Information
+                    </button>
+                </div>
+            </div>
+            <div class="filter">
+                <form action="" class="filter" method="POST">
+                    <div class="title">
+                        <p>
+                            <span class="required">* </span>Exchanger </p>
+                    </div>
+                    <div class="data">
+                        <md-radio-group class="md-primary" ng-change="checkFilterExchanger()" ng-model="filter.exchanger.value">
+                            <md-radio-button ng-disabled="exchanger.disabled" ng-repeat="exchanger in filter.exchanger.option" ng-value="exchanger.value">
+                                {{exchanger.name}}
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.exchanger.response.class" ng-show="filter.exchanger.response.view">
+                            {{filter.exchanger.response.value}} </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <span class="required">* </span>Asset </p>
+                    </div>
+                    <div class="data">
+                        <md-radio-group class="md-primary" ng-change="checkFilterAsset()" ng-model="filter.asset.value">
+                            <md-radio-button ng-disabled="asset.disabled" ng-repeat="asset in filter.asset.option" ng-value="asset.value">
+                                {{asset.name}}
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.asset.response.class" ng-show="filter.asset.response.view">
+                            {{filter.asset.response.value}} </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <span class="required"></span>Trade Information </p>
+                    </div>
+                    <div class="data">
+                        <md-chips md-autocomplete-snap md-require-match="true" md-transform-chip="transformFilterTradeInformationChip($chip)" ng-change="checkFilterTradeInformation()" ng-model="filter.tradeInformation.value">
+                            <md-autocomplete md-item-text="data.name" md-items="data in searchFilterTradeInformation(filter.tradeInformation.search)" md-search-text="filter.tradeInformation.search" placeholder="Trade Information">
+                                <span>{{data.name}}</span>
+                            </md-autocomplete>
+                            <md-chip-template>{{$chip.name}}</md-chip-template>
+                        </md-chips>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.tradeInformation.response.class" ng-show="filter.tradeInformation.response.view">
+                            {{filter.tradeInformation.response.value}} </p>
+                    </div>
+                    <div class="action">
+                        <button class="load-list yellow" name="cryptocurrency-load-list" ng-click="loadList($event)">
+                            <i class="filter-white square-15 margin-right-5"></i>Load
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="content">
+                <table class="data-list">
+                    <tr>
+                        <th class="index">
+                            <p>#</p>
+                        </th>
+                        <th>
+                            <p>Symbol</p>
+                        </th>
+                        <th>
+                            <p>Last Price</p>
+                        </th>
+                        <th>
+                            <p>24h Change</p>
+                        </th>
+                        <th>
+                            <p>24h High</p>
+                        </th>
+                        <th>
+                            <p>24h Low</p>
+                        </th>
+                        <th>
+                            <p>24h Volume</p>
+                        </th>
+                    </tr>
+                    <tr ng-repeat="(iteration, data) in list">
+                        <td>
+                            <p>{{iteration + 1}}</p>
+                        </td>
+                        <td>
+                            <p ng-bind-html="data.symbol"></p>
+                        </td>
+                        <td>
+                            <p ng-bind-html="data.lastPrice"></p>
+                        </td>
+                        <td>
+                            <p ng-bind-html="data.priceChange + ' &nbsp;&nbsp;&nbsp; (' + data.priceChangePercent + ')'"></p>
+                        </td>
+                        <td>
+                            <p ng-bind-html="data.highPrice"></p>
+                        </td>
+                        <td>
+                            <p ng-bind-html="data.lowPrice"></p>
+                        </td>
+                        <td>
+                            <p ng-bind-html="data.volume"></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

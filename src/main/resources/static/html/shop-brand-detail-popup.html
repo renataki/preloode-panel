@@ -1,0 +1,93 @@
+<div class="accordion" ng-init="initializeLayout()">
+    <p class="accordion-navigation" data-index="1" ng-click="rebuild()">Detail<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="1">
+        <p class="title">Name</p>
+        <div class="data">{{name.value}}</div>
+        <p class="title">Description</p>
+        <div class="data" ng-bind-html="description.value"></div>
+        <p class="title">Content</p>
+        <div class="data" ng-bind-html="content.value"></div>
+        <p class="title">URL</p>
+        <div class="data">{{url.value}}</div>
+        <p class="title">Meta Title</p>
+        <div class="data">{{meta.title.value}}</div>
+        <p class="title">Meta Description</p>
+        <div class="data">{{meta.description.value}}</div>
+        <p class="title">Meta Keyword</p>
+        <div class="data">{{meta.keyword.value}}</div>
+        <p class="title">OG Title</p>
+        <div class="data">{{og.title.value}}</div>
+        <p class="title">OG Description</p>
+        <div class="data">{{og.description.value}}</div>
+        <p class="title">Rate</p>
+        <div class="data">{{rate.value}}</div>
+        <p class="title">Like</p>
+        <div class="data">{{like.value}}</div>
+        <p class="title">Dislike</p>
+        <div class="data">{{dislike.value}}</div>
+        <p class="title">Sequence</p>
+        <div class="data">{{sequence.value}}</div>
+        <p class="title">Status</p>
+        <div class="data">{{status.value}}</div>
+        <p class="title">Created Date</p>
+        <div class="data">{{created.timestamp.value}}</div>
+        <p class="title">Modified Date</p>
+        <div class="data">{{modified.timestamp.value}}</div>
+    </div>
+    <p class="accordion-navigation" data-index="2" ng-click="rebuild()">
+        File<span><i class="plus-white square-10"></i></span></p>
+    <div class="accordion-content data-entry" data-index="2">
+        <p class="title file">Thumbnail</p>
+        <div class="file-list" ng-if="thumbnailList.upload.view">
+            <span ng-repeat="data in thumbnailList.upload.file">
+                <img class="responsive" ng-src="{{data}}">
+            </span>
+        </div>
+        <p class="title file">Image</p>
+        <div class="file-list" ng-if="imageList.upload.view">
+            <span ng-repeat="data in imageList.upload.file">
+                <img class="responsive" ng-src="{{data}}">
+            </span>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="3" ng-click="rebuild()">
+        Category<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="3">
+        <div class="checkbox-list">
+            <div ng-repeat="data in category.option">
+                <p ng-bind-html="data.icon"></p>
+                <md-checkbox ng-checked="category.idList.value.indexOf(data.id) > -1" ng-click="categoryToggleCheckbox(data)">
+                    {{data.name}}
+                </md-checkbox>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="4" ng-click="rebuild()">
+        Company<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="4">
+        <div class="checkbox-list">
+            <div ng-repeat="data in company.option">
+                <md-checkbox ng-checked="company.idList.value.indexOf(data.id) > -1" ng-click="$event.preventDefault()">
+                    {{data.name}}
+                </md-checkbox>
+            </div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="5" ng-click="rebuild()">
+        Branch<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="5">
+        <div class="checkbox-list">
+            <div ng-repeat="data in company.branch.option">
+                <md-checkbox ng-checked="company.branch.idList.value.indexOf(data.id) > -1" ng-click="$event.preventDefault()">
+                    {{data.name}}
+                </md-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="separator"></div>
+</div>

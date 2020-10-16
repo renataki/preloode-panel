@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="installation">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div class="installation">
+        <form action="" method="post" ng-if="status == 'Installation'">
+            <p class="note">To get a fresh installation please click the button below.</p>
+            <button class="install" name="install" ng-click="install($event)">Install</button>
+        </form>
+        <form action="" method="post" ng-if="status == 'Initialize Demo Data'">
+            <p class="note">To get a fresh installation please click the button below.</p>
+            <button class="initialize-demo-data" name="initialize-demo-data" ng-click="initializeDemoData($event)">
+                Initialize Demo Data
+            </button>
+            <button class="go-to-panel" name="go-to-panel" ng-click="goToPanel($event)">Go To Panel</button>
+        </form>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

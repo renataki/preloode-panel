@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="blogStar">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div th:replace="global/header :: menuIcon"></div>
+    <div th:replace="global/header :: menu"></div>
+    <div id="popup" ng-show="popup.view">
+        <div class="wrapper" ng-show="popup.view">
+            <div class="close">
+                <i class="remove-white square-15" ng-click="closePopup()"></i>
+            </div>
+            <div class="popup" ng-scrollbar rebuild-on="rebuild:scrollbar" rebuild-on-resize>
+                <blog-star-detail ng-if="popup.blogStar"></blog-star-detail>
+            </div>
+        </div>
+    </div>
+    <div th:replace="global/header :: header"></div>
+    <div id="content" ng-init="initializePagination()">
+        <div class="wrapper">
+            <div class="navigation">
+                <div class="breadcrumb">
+                    <p>
+                        <a th:href="${global.setting.url.base + '/'}">Home</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>
+                        <a th:href="${global.setting.url.base + '/blog/'}">Blog</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>Star</p>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="action">
+                    <a class="add" th:href="${global.setting.url.base + '/blog/star/entry/'}">
+                        <i class="plus-white square-15 margin-right-5"></i>Add New
+                    </a>
+                </div>
+            </div>
+            <div class="filter">
+                <form action="" class="filter" method="POST">
+                    <input class="id" name="blog-star-filter-id" ng-model="filter.id.value" placeholder="ID" type="text"/>
+                    <input name="blog-star-filter-name" ng-model="filter.name.value" placeholder="Name" type="text"/>
+                    <md-input-container>
+                        <md-select ng-model="filter.status.selected" placeholder="Status">
+                            <md-option ng-repeat="data in filter.status.option" ng-value="data">
+                                {{data.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <input class="date-range-picker" name="blog-star-filter-created-timestamp" ng-model="filter.createdDate.value" placeholder="Created Date Range" type="text"/>
+                    <button class="filter yellow" name="blog-star-filter" ng-click="filterPagination($event)">
+                        <i class="filter-white square-15 margin-right-5"></i>Filter
+                    </button>
+                    <button class="remove-filter blue" name="blog-star-remove-filter" ng-click="removeFilterPagination($event)">
+                        <i class="refresh-white square-15 margin-right-5"></i>Remove Filter
+                    </button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+            <div class="content">
+                <form action="" class="page-entry" method="POST">
+                    <p>Page Entry</p>
+                    <input name="blog-star-page-entry" ng-model="site.page.size" placeholder="Page" type="text"/>
+                    <button class="green" name="blog-star-page" ng-click="setPagination($event)">
+                        <i class="cloud-white square-15 margin-right-5"></i>Set Page
+                    </button>
+                    <div class="clearfix"></div>
+                </form>
+                <table class="data-list">
+                    <tr>
+                        <th class="index">
+                            <p>#</p>
+                        </th>
+                        <th>
+                            <p>Name</p>
+                        </th>
+                        <th>
+                            <p>Thumbnail</p>
+                        </th>
+                        <th>
+                            <p>Sequence</p>
+                        </th>
+                        <th>
+                            <p>Status</p>
+                        </th>
+                        <th>
+                            <p>Last Modified Date</p>
+                        </th>
+                        <th class="action">
+                            <p>Action</p>
+                        </th>
+                    </tr>
+                    <tr th:class="${data.id}" th:each="data, iteration : ${pagination}" th:if="${not #strings.isEmpty(data.id)}" th:ng-dblclick="${'loadDetail(''' + data.id + ''')'}">
+                        <td>
+                            <p th:text="${page + iteration.index}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${data.name}"></p>
+                        </td>
+                        <td>
+                            <p>
+                                <img class="responsive" th:alt="${global.setting.name + ' Blog Star Thumbnail'}" th:if="${not #lists.isEmpty(data.thumbnailList)}" th:src="${global.setting.url.image + '/blog/star/thumbnail/' + data.thumbnailList[0]}"/>
+                            </p>
+                        </td>
+                        <td>
+                            <p th:text="${#numbers.formatDecimal(data.sequence, 1, 'COMMA', 0, 'POINT')}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${data.status}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${#dates.format(data.modified.timestamp, 'yyyy-MM-dd HH:mm:ss')}"></p>
+                        </td>
+                        <td class="action">
+                            <div>
+                                <a th:href="${global.setting.url.base + '/blog/star/entry/' + data.id + '/'}">
+                                    <i class="pencil-white square-15"></i>
+                                </a>
+                                <form action="" method="POST">
+                                    <button class="delete red" name="delete" th:ng-click="${'delete(''' + data.id + ''', $event)'}">
+                                        <i class="trash-white square-15"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="pagination">
+                    [[${link}]]
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

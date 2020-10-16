@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div class="full-image">
+        <img class="responsive" th:alt="${global.setting.name + ' Page Not Found Banner'}" th:src="${global.setting.url.image + '/page-not-found.png'}"/>
+        <p class="back">
+            Click <a th:href="${global.setting.url.base + '/'}">here</a>
+            for back to <a th:href="${global.setting.url.base + '/'}">dashboard</a>
+        </p>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

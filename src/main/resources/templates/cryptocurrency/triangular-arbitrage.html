@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="cryptocurrencyTriangularArbitrage">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div th:replace="global/header :: menuIcon"></div>
+    <div th:replace="global/header :: menu"></div>
+    <div id="popup" ng-show="popup.view">
+        <div class="wrapper" ng-show="popup.view">
+            <div class="close">
+                <i class="remove-white square-15" ng-click="closePopup();unsubscribeStream()"></i>
+            </div>
+            <div class="popup" ng-scrollbar rebuild-on="rebuild:scrollbar" rebuild-on-resize>
+                <cryptocurrency-triangular-arbitrage-detail ng-if="popup.cryptocurrencyTriangularArbitrage"></cryptocurrency-triangular-arbitrage-detail>
+            </div>
+        </div>
+    </div>
+    <div th:replace="global/header :: header"></div>
+    <div id="content" ng-init="initializeData()">
+        <div class="wrapper">
+            <div class="navigation">
+                <div class="breadcrumb">
+                    <p>
+                        <a th:href="${global.setting.url.base + '/'}">Home</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>
+                        <a th:href="${global.setting.url.base + '/cryptocurrency/'}">Cryptocurrency</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>Triangular Arbitrage</p>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="action">
+                    <button class="coin-information yellow" name="triangular-arbitrage-coin-information" ng-click="loadCoinInformation($event)">
+                        <i class="refresh-white square-15 margin-right-5"></i>Coin Information
+                    </button>
+                </div>
+            </div>
+            <div class="filter">
+                <form action="" class="filter" method="POST">
+                    <div class="title">
+                        <p>
+                            <span class="required">* </span>Exchanger </p>
+                    </div>
+                    <div class="data">
+                        <md-radio-group class="md-primary" ng-change="checkFilterExchanger()" ng-model="filter.exchanger.value">
+                            <md-radio-button ng-disabled="exchanger.disabled" ng-repeat="exchanger in filter.exchanger.option" ng-value="exchanger.value">
+                                {{exchanger.name}}
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.exchanger.response.class" ng-show="filter.exchanger.response.view">
+                            {{filter.exchanger.response.value}} </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <span class="required">* </span>Asset </p>
+                    </div>
+                    <div class="data">
+                        <md-radio-group class="md-primary" ng-change="checkFilterAsset()" ng-model="filter.asset.value">
+                            <md-radio-button ng-disabled="asset.disabled" ng-repeat="asset in filter.asset.option" ng-value="asset.value">
+                                {{asset.name}}
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.asset.response.class" ng-show="filter.asset.response.view">
+                            {{filter.asset.response.value}} </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <span class="required"></span>Trade Information </p>
+                    </div>
+                    <div class="data">
+                        <md-chips md-autocomplete-snap md-require-match="true" md-transform-chip="transformFilterTradeInformationChip($chip)" ng-change="checkFilterTradeInformation()" ng-model="filter.tradeInformation.value">
+                            <md-autocomplete md-item-text="data.name" md-items="data in searchFilterTradeInformation(filter.tradeInformation.search)" md-search-text="filter.tradeInformation.search" placeholder="Trade Information">
+                                <span>{{data.name}}</span>
+                            </md-autocomplete>
+                            <md-chip-template>{{$chip.name}}</md-chip-template>
+                        </md-chips>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.tradeInformation.response.class" ng-show="filter.tradeInformation.response.view">
+                            {{filter.tradeInformation.response.value}} </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <span class="required">* </span>Lot Size </p>
+                    </div>
+                    <div class="data">
+                        <input name="triangular-arbitrage-lot-size" ng-blur="initializeFilterLotSize()" ng-keyup="checkFilterLotSize()" ng-model="filter.lotSize.value" placeholder="Lot Size" type="text"/>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.lotSize.response.class" ng-show="filter.lotSize.response.view">
+                            {{filter.lotSize.response.value}} </p>
+                    </div>
+                    <div class="title">
+                        <p>
+                            <span class="required"></span>Minimum Percentage </p>
+                    </div>
+                    <div class="data">
+                        <input name="cryptocurrency-triangular-arbitrage-minimum-percentage" ng-blur="initializeFilterMinimumPercentage()" ng-keyup="checkMinimumPercentage()" ng-model="filter.minimumPercentage.value" placeholder="Minimum Percentage" type="text"/>
+                    </div>
+                    <div class="response">
+                        <p ng-class="filter.minimumPercentage.response.class" ng-show="filter.minimumPercentage.response.view">
+                            {{filter.minimumPercentage.response.value}} </p>
+                    </div>
+                    <div class="action">
+                        <button class="load-list yellow" name="cryptocurrency-triangular-arbitrage-load-list" ng-click="loadList($event)">
+                            <i class="filter-white square-15 margin-right-5"></i>Load
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="content">
+                <table class="data-list">
+                    <tr>
+                        <th class="index">
+                            <p>#</p>
+                        </th>
+                        <th>
+                            <p>Sequence</p>
+                        </th>
+                        <th>
+                            <p>Percentage</p>
+                        </th>
+                        <th>
+                            <p>Action</p>
+                        </th>
+                    </tr>
+                    <tr ng-repeat="(iteration, data) in list">
+                        <td>
+                            <p>{{iteration + 1}}</p>
+                        </td>
+                        <td>
+                            <p ng-if="data.start.action == 'Bid'">
+                                {{data.start.symbol}} Bid Price : {{data.start.price}} Lot Size :
+                                {{data.start.quantity.order}} </p>
+                            <p ng-if="data.start.action == 'Ask'">
+                                {{data.start.symbol}} Ask Price : {{data.start.price}} Lot Size :
+                                {{data.start.quantity.order}} </p>
+                            <p ng-if="data.middle.action == 'Bid'">
+                                {{data.middle.symbol}} Bid Price : {{data.middle.price}} Lot Size :
+                                {{data.middle.quantity.order}} </p>
+                            <p ng-if="data.middle.action == 'Ask'">
+                                {{data.middle.symbol}} Ask Price : {{data.middle.price}} Lot Size :
+                                {{data.middle.quantity.order}} </p>
+                            <p ng-if="data.end.action == 'Bid'">
+                                {{data.end.symbol}} Bid Price : {{data.end.price}} Lot Size :
+                                {{data.end.quantity.order}} </p>
+                            <p ng-if="data.end.action == 'Ask'">
+                                {{data.end.symbol}} Ask Price : {{data.end.price}} Lot Size :
+                                {{data.end.quantity.order}} </p>
+                        </td>
+                        <td>
+                            <p>
+                                {{data.percentage}}% </p>
+                        </td>
+                        <td class="action">
+                            <div>
+                                <form action="" method="POST">
+                                    <button class="load-data-stream blue" name="load-data-stream" th:ng-click="${'loadDataStream(iteration, $event)'}">
+                                        <i class="transaction-white square-15"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="pagination">
+                    [[${link}]]
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta content="english" name="language"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title th:if="${#strings.isEmpty(global.setting.meta.title) || global.setting.meta.title == 'Index'}" th:text="${global.setting.name}"></title>
+    <title th:if="${not #strings.isEmpty(global.setting.meta.title) || global.setting.meta.title != 'Index'}" th:text="${global.setting.meta.title + ' | ' + global.setting.name}"></title>
+    <meta name="description" th:content="${global.setting.meta.description}" th:if="${not #strings.isEmpty(global.setting.meta.description)}"/>
+    <meta name="keyword" th:content="${global.setting.meta.keyword}" th:if="${not #strings.isEmpty(global.setting.meta.keyword)}"/>
+    <meta name="categories" th:content="${global.setting.meta.categories}" th:if="${not #strings.isEmpty(global.setting.meta.categories)}"/>
+    <meta name="language" th:content="${global.setting.meta.language}" th:if="${not #strings.isEmpty(global.setting.meta.language)}"/>
+    <meta name="theme-color" th:content="${global.setting.meta.themeColor}" th:if="${not #strings.isEmpty(global.setting.meta.themeColor)}"/>
+    <meta name="robots" th:content="${global.setting.meta.robots}" th:if="${not #strings.isEmpty(global.setting.meta.robots)}"/>
+    <meta name="geo.region" th:content="${global.setting.meta.geo.region}" th:if="${not #strings.isEmpty(global.setting.meta.geo.region)}"/>
+    <meta name="geo.placename" th:content="${global.setting.meta.geo.placename}" th:if="${not #strings.isEmpty(global.setting.meta.geo.placename)}"/>
+    <meta property="og:locale" th:content="${global.setting.meta.og.locale}" th:if="${not #strings.isEmpty(global.setting.meta.og.locale)}"/>
+    <meta property="og:type" th:content="${global.setting.meta.og.type}" th:if="${not #strings.isEmpty(global.setting.meta.og.type)}"/>
+    <meta property="og:site_name" th:content="${global.setting.meta.og.siteName}" th:if="${not #strings.isEmpty(global.setting.meta.og.siteName)}"/>
+    <meta property="og:url" th:content="${global.setting.meta.og.url}" th:if="${not #strings.isEmpty(global.setting.meta.og.url)}"/>
+    <meta property="og:title" th:content="${global.setting.meta.og.title}" th:if="${not #strings.isEmpty(global.setting.meta.og.title)}"/>
+    <meta property="og:description" th:content="${global.setting.meta.og.description}" th:if="${not #strings.isEmpty(global.setting.meta.og.description)}"/>
+    <link rel="canonical" th:href="${global.setting.canonical}" th:if="${not #strings.isEmpty(global.setting.canonical)}"/>
+    <link rel="author" th:href="${global.setting.author}" th:if="${not #strings.isEmpty(global.setting.author)}"/>
+    <link rel="publisher" th:href="${global.setting.publisher}" th:if="${not #strings.isEmpty(global.setting.publisher)}"/>
+    <link rel="icon" th:href="${global.setting.url.image + '/favicon.ico'}" type="image/x-icon"/>
+    <link rel="stylesheet" th:href="${global.setting.url.css + '/library/angular-js/angular-material.min.css'}" type="text/css"/>
+    <link rel="stylesheet" th:href="${global.setting.url.css + '/library/angular-js/angular-scrollbar.min.css'}" type="text/css"/>
+    <link rel="stylesheet" th:href="${global.setting.url.css + '/library/flatpicker.min.css'}" type="text/css"/>
+    <link rel="stylesheet" th:href="${global.setting.url.css + '/library/library.css'}" type="text/css"/>
+    <link rel="stylesheet" th:href="${global.setting.url.css + '/global.css'}" type="text/css"/>
+    <link rel="stylesheet" th:each="css : ${global.setting.css}" th:href="${global.setting.url.css + '/' + css}" type="text/css"/>
+</head>
+<base id="global" th:data-audio-url="${global.setting.url.audio}" th:data-base-url="${global.setting.url.base}" th:data-cookie-path="${global.cookie.path}" th:data-cookie-prefix="${global.cookie.prefix}" th:data-datetime-format="${global.dateTime.format}" th:data-datetime-offset="${global.dateTime.offset}" th:data-datetime-timezone="${global.dateTime.timezone}" th:data-image-url="${global.setting.url.image}" th:data-panel-url="${global.setting.url.panel}" th:data-video-url="${global.setting.url.video}" th:data-website-url="${global.setting.url.website}" th:data-websocket-url="${global.setting.url.websocket}" th:fragment="global"/>
+<audio id="notification" th:fragment="notification">
+    <source th:src="${global.setting.url.audio + '/notification.mp3'}" type="audio/mpeg">
+</audio>
+<div id="loading" ng-show="loading.view" th:fragment="loading">
+    <div class="wrapper">
+        <div class="circle"></div>
+        <div class="circle-1"></div>
+    </div>
+</div>
+<div id="response" ng-class="response.class" ng-show="response.view" th:fragment="response">
+    <p ng-bind-html="response.message"></p>
+</div>
+<div id="menu-icon" th:fragment="menuIcon" th:style="${'transform : translateX(' + global.setting.layout.iconTranslateX + ')'}">
+    <i class="menu-white square-20" onclick=""></i>
+</div>
+<div id="menu" ng-mousemove="rebuild()" ng-scrollbar rebuild-on="rebuild:scrollbar" rebuild-on-resize th:fragment="menu" th:style="${'transform : translateX(' + global.setting.layout.menuTranslateX + ')'}">
+    <ul class="main-menu">
+        <li class="menu">
+            <a th:href="${global.setting.url.base + '/'}">
+                <p>
+                    <i class="dashboard-white square-20 margin-right-10"></i>Dashboard </p>
+            </a>
+            <div class="clearfix"></div>
+            <span></span>
+        </li>
+        <li class="separator"></li>
+        <th:block th:if="${#strings.substring(account.privilege.company, 0, 1) == '7'}">
+            <li class="menu" data-index="1">
+                <a th:href="${global.setting.url.base + '/company/'}">
+                    <p>
+                        <i class="company-white square-20 margin-right-10"></i>Company </p>
+                </a>
+                <p class="menu-toggle" data-index="1" ng-click="rebuild()">
+                    <i class="toggle-white square-15"></i>
+                </p>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+            <li class="menu child-menu" data-index="1" th:if="${#strings.substring(account.privilege.companyBranch, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/company/branch/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="store-white square-20 margin-right-10"></i>Branch </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="1" th:if="${#strings.substring(account.privilege.companyBranch, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="1" th:if="${#strings.substring(account.privilege.companyBranch, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/company/branch/entry/'}"></a><!-- Branch Entry -->
+            </li>
+        </th:block>
+        <th:block th:if="${#strings.substring(account.privilege.user, 0, 1) == '7'}">
+            <li class="menu" data-index="2">
+                <a th:href="${global.setting.url.base + '/user/'}">
+                    <p>
+                        <i class="user-white square-20 margin-right-10"></i>User </p>
+                </a>
+                <p class="menu-toggle" data-index="2" ng-click="rebuild()">
+                    <i class="toggle-white square-15"></i>
+                </p>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+            <li class="menu child-menu" data-index="2" th:if="${#strings.substring(account.privilege.userRole, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/user/role/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="role-white square-20 margin-right-10"></i>Role </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="2" th:if="${#strings.substring(account.privilege.userRole, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="2" th:if="${#strings.substring(account.privilege.userRole, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/user/role/entry/'}"></a><!-- Role Entry -->
+            </li>
+            <li class="menu child-menu" data-index="2" th:if="${#strings.substring(account.privilege.userGroup, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/user/group/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="group-white square-20 margin-right-10"></i>Group </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="2" th:if="${#strings.substring(account.privilege.userGroup, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="2" th:if="${#strings.substring(account.privilege.userGroup, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/user/group/entry/'}"></a><!-- Group Entry -->
+            </li>
+        </th:block>
+        <th:block th:if="${#strings.substring(account.privilege.payment, 0, 1) == '7'}">
+            <li class="menu" data-index="3">
+                <a th:href="${global.setting.url.base + '/payment/'}">
+                    <p>
+                        <i class="bank-white square-20 margin-right-10"></i>Payment </p>
+                </a>
+                <p class="menu-toggle" data-index="3" ng-click="rebuild()">
+                    <i class="toggle-white square-15"></i>
+                </p>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+            <li class="menu child-menu" data-index="3" th:if="${#strings.substring(account.privilege.paymentMethod, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/payment/method/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="money-exchange-white square-20 margin-right-10"></i>Method </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="3" th:if="${#strings.substring(account.privilege.paymentMethod, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="3" th:if="${#strings.substring(account.privilege.paymentMethod, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/payment/method/entry/'}"></a><!-- Method Entry -->
+            </li>
+            <li class="separator" th:if="${#strings.substring(account.privilege.paymentMethod, 0, 1) == '7'}"></li>
+            <li class="menu child-menu" data-index="3" th:if="${#strings.substring(account.privilege.paymentAccount, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/payment/account/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="money-white square-20 margin-right-10"></i>Account </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="3" th:if="${#strings.substring(account.privilege.paymentAccount, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="3" th:if="${#strings.substring(account.privilege.paymentAccount, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/payment/account/entry/'}"></a><!-- Account Entry -->
+            </li>
+        </th:block>
+        <th:block th:if="${#strings.substring(account.privilege.thirdParty, 0, 1) == '7'}">
+            <li class="menu" data-index="4">
+                <a th:href="${global.setting.url.base + '/third-party/'}">
+                    <p>
+                        <i class="third-party-white square-20 margin-right-10"></i>Third Party </p>
+                </a>
+                <p class="menu-toggle" data-index="4" ng-click="rebuild()">
+                    <i class="toggle-white square-15"></i>
+                </p>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+            <li class="menu child-menu" data-index="4" th:if="${#strings.substring(account.privilege.thirdPartyProvider, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/third-party/provider/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="interface-white square-20 margin-right-10"></i>Provider </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="4" th:if="${#strings.substring(account.privilege.thirdPartyProvider, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="4" th:if="${#strings.substring(account.privilege.thirdPartyProvider, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/third-party/provider/entry/'}"></a><!-- Provider Entry -->
+            </li>
+            <li class="separator" th:if="${#strings.substring(account.privilege.thirdPartyProvider, 0, 1) == '7'}"></li>
+            <li class="menu child-menu" data-index="4" th:if="${#strings.substring(account.privilege.thirdPartyAccount, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/third-party/account/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="user-white square-20 margin-right-10"></i>Account </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="4" th:if="${#strings.substring(account.privilege.thirdPartyAccount, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="4" th:if="${#strings.substring(account.privilege.thirdPartyAccount, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/third-party/account/entry/'}"></a><!-- Account Entry -->
+            </li>
+        </th:block>
+        <th:block th:if="${#strings.substring(account.privilege.blog, 0, 1) == '7'}">
+            <li class="menu" data-index="5">
+                <a th:href="${global.setting.url.base + '/blog/'}">
+                    <p>
+                        <i class="article-white square-20 margin-right-10"></i>Blog </p>
+                </a>
+                <p class="menu-toggle" data-index="5" ng-click="rebuild()">
+                    <i class="toggle-white square-15"></i>
+                </p>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+            <li class="menu child-menu" data-index="5" th:if="${#strings.substring(account.privilege.blogCategory, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/blog/category/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="category-white square-20 margin-right-10"></i>Category </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="5" th:if="${#strings.substring(account.privilege.blogCategory, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="5" th:if="${#strings.substring(account.privilege.blogCategory, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/blog/category/entry/'}"></a><!-- Category Entry -->
+            </li>
+            <li class="separator" th:if="${#strings.substring(account.privilege.blogCategory, 0, 1) == '7'}"></li>
+            <li class="menu child-menu" data-index="5" th:if="${#strings.substring(account.privilege.blogPost, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/blog/post/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="category-white square-20 margin-right-10"></i>Post </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="5" th:if="${#strings.substring(account.privilege.blogPost, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="5" th:if="${#strings.substring(account.privilege.blogPost, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/blog/post/entry/'}"></a><!-- Post Entry -->
+            </li>
+            <li class="separator" th:if="${#strings.substring(account.privilege.blogPost, 0, 1) == '7'}"></li>
+            <li class="menu child-menu" data-index="5" th:if="${#strings.substring(account.privilege.blogStar, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/blog/star/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="star-white square-20 margin-right-10"></i>Star </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="5" th:if="${#strings.substring(account.privilege.blogStar, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="5" th:if="${#strings.substring(account.privilege.blogStar, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/blog/star/entry/'}"></a><!-- Star Entry -->
+            </li>
+        </th:block>
+        <th:block th:if="${#strings.substring(account.privilege.shop, 0, 1) == '7'}">
+            <li class="menu" data-index="6">
+                <a th:href="${global.setting.url.base + '/shop/'}">
+                    <p>
+                        <i class="cart-white square-20 margin-right-10"></i>Shop </p>
+                </a>
+                <p class="menu-toggle" data-index="6" ng-click="rebuild()">
+                    <i class="toggle-white square-15"></i>
+                </p>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+            <li class="menu child-menu" data-index="6" th:if="${#strings.substring(account.privilege.shopBrand, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/shop/brand/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="star-white square-20 margin-right-10"></i>Brand </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="6" th:if="${#strings.substring(account.privilege.shopBrand, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="6" th:if="${#strings.substring(account.privilege.shopBrand, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/shop/brand/entry/'}"></a><!-- Brand Entry -->
+            </li>
+            <li class="separator" th:if="${#strings.substring(account.privilege.shopBrand, 0, 1) == '7'}"></li>
+            <li class="menu child-menu" data-index="6" th:if="${#strings.substring(account.privilege.shopCategory, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/shop/category/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="category-white square-20 margin-right-10"></i>Category </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="6" th:if="${#strings.substring(account.privilege.shopCategory, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="6" th:if="${#strings.substring(account.privilege.shopCategory, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/shop/category/entry/'}"></a><!-- Category Entry -->
+            </li>
+            <li class="separator" th:if="${#strings.substring(account.privilege.shopCategory, 0, 1) == '7'}"></li>
+            <li class="menu child-menu" data-index="6" th:if="${#strings.substring(account.privilege.shopProduct, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/shop/product/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="tag-white square-20 margin-right-10"></i>Product </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="6" th:if="${#strings.substring(account.privilege.shopProduct, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="6" th:if="${#strings.substring(account.privilege.shopProduct, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/shop/product/entry/'}"></a><!-- Product Entry -->
+            </li>
+        </th:block>
+        <th:block th:if="${#strings.substring(account.privilege.crm, 0, 1) == '7'}">
+            <li class="menu" data-index="7">
+                <a th:href="${global.setting.url.base + '/crm/'}">
+                    <p>
+                        <i class="marketing-white square-20 margin-right-10"></i>CRM </p>
+                </a>
+                <p class="menu-toggle" data-index="7" ng-click="rebuild()">
+                    <i class="toggle-white square-15"></i>
+                </p>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+            <li class="menu child-menu" data-index="7" th:if="${#strings.substring(account.privilege.crmDatabase, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/crm/database/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="article-white square-20 margin-right-10"></i>Database </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="7" th:if="${#strings.substring(account.privilege.crmDatabase, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="7" th:if="${#strings.substring(account.privilege.crmDatabase, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/crm/database/entry/'}"></a><!-- Database Entry -->
+            </li>
+            <li class="menu child-menu" data-index="7" th:if="${#strings.substring(account.privilege.crmGroup, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/crm/group/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="group-white square-20 margin-right-10"></i>Group </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="7" th:if="${#strings.substring(account.privilege.crmGroup, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="7" th:if="${#strings.substring(account.privilege.crmGroup, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/crm/group/entry/'}"></a><!-- Group Entry -->
+            </li>
+            <li class="separator" th:if="${#strings.substring(account.privilege.crmPhone, 0, 1) == '7'}"></li>
+            <li class="menu child-menu" data-index="7" th:if="${#strings.substring(account.privilege.crmPhone, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/crm/phone/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="phone-white square-20 margin-right-10"></i>Phone </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="7" th:if="${#strings.substring(account.privilege.crmPhone, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="7" th:if="${#strings.substring(account.privilege.crmPhone, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/crm/phone/call/'}"></a><!-- Phone Call -->
+            </li>
+        </th:block>
+        <!--<c:if test="${menu.promotion.toString() == '7'}">
+            <li class="menu">
+                <a href="${configuration.url.base}/promotion/">
+                    <p>
+                        <i class="promotion-white square-20 margin-right-10"></i>Promotion
+                    </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+        </c:if>-->
+        <th:block th:if="${#strings.substring(account.privilege.cryptocurrency, 0, 1) == '7'}">
+            <li class="menu" data-index="8">
+                <a th:href="${global.setting.url.base + '/cryptocurrency/'}">
+                    <p>
+                        <i class="coin-white square-20 margin-right-10"></i>Cryptocurrency </p>
+                </a>
+                <p class="menu-toggle" data-index="8" ng-click="rebuild()">
+                    <i class="toggle-white square-15"></i>
+                </p>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+            <li class="menu child-menu" data-index="8" th:if="${#strings.substring(account.privilege.cryptocurrencyArbitrage, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/cryptocurrency/arbitrage/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="exchange-white square-20 margin-right-10"></i>Arbitrage </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="8" th:if="${#strings.substring(account.privilege.cryptocurrencyArbitrage, 0, 1) == '7'}"></li>
+            <li class="menu child-menu" data-index="8" th:if="${#strings.substring(account.privilege.cryptocurrencyTriangularArbitrage, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/cryptocurrency/triangular-arbitrage/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="recycle-white square-20 margin-right-10"></i>Triangular Arbitrage </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="8" th:if="${#strings.substring(account.privilege.cryptocurrencyTriangularArbitrage, 0, 1) == '7'}"></li>
+        </th:block>
+        <th:block th:if="${#strings.substring(account.privilege.transaction, 0, 1) == '7'}">
+            <li class="menu" data-index="9">
+                <a th:href="${global.setting.url.base + '/transaction/'}">
+                    <p>
+                        <i class="transaction-white square-20 margin-right-10"></i>Transaction </p>
+                </a>
+                <p class="menu-toggle" data-index="9" ng-click="rebuild()">
+                    <i class="toggle-white square-15"></i>
+                </p>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+            <li class="menu child-menu" data-index="9" th:if="${#strings.substring(account.privilege.transactionCart, 0, 1) == '7'}">
+                <a href="${configuration.url.base}/transaction/cart/">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="cart-white square-20 margin-right-10"></i>Cart </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="9" th:if="${#strings.substring(account.privilege.transactionCart, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="9" th:if="${#strings.substring(account.privilege.transactionCart, 0, 1) == '7'}">
+                <a href="${configuration.url.base}/transaction/cart/entry/"></a>
+            </li>
+        </th:block>
+        <!--<c:if test="${menu.report.toString() == '7'}">
+            <li class="menu">
+                <a href="${configuration.url.base}/report/">
+                    <p>
+                        <i class="report-white square-20 margin-right-10"></i>Report </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+        </c:if>-->
+        <th:block th:if="${#strings.substring(account.privilege.setting, 0, 1) == '7'}">
+            <li class="menu" data-index="10">
+                <a th:href="${global.setting.url.base + '/setting/'}">
+                    <p>
+                        <i class="setting-white square-20 margin-right-10"></i>Setting </p>
+                </a>
+                <p class="menu-toggle" data-index="10" ng-click="rebuild()">
+                    <i class="toggle-white square-15"></i>
+                </p>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator"></li>
+            <!--<li th:if="${#strings.substring(account.privilege.setting, 0, 1) == '7' && #strings.substring(account.privilege.settingUrl, 0, 1) == '7'}"
+                class="menu child-menu" data-index="9">
+                <a th:href="${global.setting.url.base + '/setting/url/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="link-white square-20 margin-right-10"></i>URL
+                    </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li th:if="${#strings.substring(account.privilege.setting, 0, 1) == '7' && #strings.substring(account.privilege.settingUrl, 0, 1) == '7'}"
+                class="separator child-menu" data-index="9"></li>
+            <li th:if="${#strings.substring(account.privilege.setting, 0, 1) == '7' && #strings.substring(account.privilege.settingUrl, 0, 1) == '7'}"
+                class="menu child-menu hidden" data-index="9">
+                <a th:href="${global.setting.url.base + '/setting/url/entry/'}"></a><!-- URL Entry -->
+            <!--</li>
+            <li th:if="${#strings.substring(account.privilege.setting, 0, 1) == '7' && #strings.substring(account.privilege.settingPage, 0, 1) == '7'}"
+                class="menu child-menu" data-index="9">
+                <a th:href="${global.setting.url.base + '/setting/page/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="article-white square-20 margin-right-10"></i>Page
+                    </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li th:if="${#strings.substring(account.privilege.setting, 0, 1) == '7' && #strings.substring(account.privilege.settingPage, 0, 1) == '7'}"
+                class="separator child-menu" data-index="9"></li>
+            <li th:if="${#strings.substring(account.privilege.setting, 0, 1) == '7' && #strings.substring(account.privilege.settingPage, 0, 1) == '7'}"
+                class="menu child-menu hidden" data-index="9">
+                <a th:href="${global.setting.url.base + '/setting/page/entry/'}"></a><!-- Page Entry -->
+            <!--</li>
+            <li th:if="${#strings.substring(account.privilege.setting, 0, 1) == '7' && #strings.substring(account.privilege.settingPage, 0, 1) == '7'}"
+                class="separator child-menu" data-index="9"></li>-->
+            <li class="menu child-menu" data-index="10" th:if="${#strings.substring(account.privilege.settingSlider, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/setting/slider/'}">
+                    <p>
+                        <i class="toggle-white square-15 margin-right-5"></i>
+                        <i class="picture-white square-20 margin-right-10"></i>Slider </p>
+                </a>
+                <div class="clearfix"></div>
+                <span></span>
+            </li>
+            <li class="separator child-menu" data-index="10" th:if="${#strings.substring(account.privilege.settingSlider, 0, 1) == '7'}"></li>
+            <li class="menu child-menu hidden" data-index="10" th:if="${#strings.substring(account.privilege.settingSlider, 0, 1) == '7'}">
+                <a th:href="${global.setting.url.base + '/setting/slider/entry/'}"></a><!-- Slider Entry -->
+            </li>
+        </th:block>
+    </ul>
+</div>
+<div id="header" th:fragment="header">
+    <div class="logo">
+        <a th:href="${global.setting.url.base}">
+            <h1>
+                <img class="responsive" th:alt="${global.setting.name + ' Logo'}" th:src="${global.setting.url.image + '/logo.png'}"/>
+            </h1>
+        </a>
+    </div>
+    <div class="account">
+        <img class="responsive" th:alt="${global.setting.name + ' User Avatar'}" th:if="${not #strings.isEmpty(account.avatar)}" th:src="${global.setting.url.image + '/user/' + account.avatar}"/>
+        <img class="responsive" th:alt="${global.setting.name + ' User Avatar'}" th:if="${#strings.isEmpty(account.avatar)}" th:src="${global.setting.url.image + '/user/user-picture.png'}"/>
+        <p th:if="${#strings.isEmpty(account.name.middle) && #strings.isEmpty(account.name.last)}" th:text="${account.name.first}"></p>
+        <p th:if="${not #strings.isEmpty(account.name.middle) && #strings.isEmpty(account.name.last)}" th:text="${account.name.first + ' ' + account.name.middle}"></p>
+        <p th:if="${#strings.isEmpty(account.name.middle) && not #strings.isEmpty(account.name.last)}" th:text="${account.name.first + ' ' + account.name.last}"></p>
+        <p th:if="${not #strings.isEmpty(account.name.middle) && not #strings.isEmpty(account.name.last)}" th:text="${account.name.first + ' ' + account.name.middle + ' ' + account.name.last}"></p>
+    </div>
+    <div class="notification">
+        <i class="bell-white square-20"></i>
+        <span></span>
+    </div>
+    <div class="logout" ng-click="logout()">
+        <i class="power-white square-20"></i>
+    </div>
+</div>
+</html>

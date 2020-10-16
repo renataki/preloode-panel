@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="crmPhone">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div th:replace="global/header :: menuIcon"></div>
+    <div th:replace="global/header :: menu"></div>
+    <div th:replace="global/header :: header"></div>
+    <div id="content" th:ng-init="${'initializeCallData(''' + entry.id + ''')'}">
+        <div class="wrapper">
+            <div class="navigation">
+                <div class="breadcrumb">
+                    <p>
+                        <a th:href="${global.setting.url.base + '/'}">Home</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>
+                        <a th:href="${global.setting.url.base + '/crm/'}">CRM</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>
+                        <a th:href="${global.setting.url.base + '/crm/phone/'}">Phone</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>Call</p>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="profile">
+                <div class="image">
+                    <div class="avatar">
+                        <img th:alt="${global.setting.name + ' User Avatar'}" th:src="${global.setting.url.image + '/user/user-picture.png'}"/>
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="title">
+                        <p>First Name</p>
+                    </div>
+                    <div class="data">
+                        <p>...</p>
+                    </div>
+                    <div class="title">
+                        <p>Middle Name</p>
+                    </div>
+                    <div class="data">
+                        <p>...</p>
+                    </div>
+                    <div class="title">
+                        <p>Last Name</p>
+                    </div>
+                    <div class="data">
+                        <p>...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

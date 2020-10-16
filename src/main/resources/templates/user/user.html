@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="global" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="global/header :: head"></head>
+<base th:replace="global/header :: global"/>
+<audio th:replace="global/header :: notification"></audio>
+<div id="wrapper" ng-controller="user">
+    <div th:replace="global/header :: loading"></div>
+    <div th:replace="global/header :: response"></div>
+    <div th:replace="global/header :: menuIcon"></div>
+    <div th:replace="global/header :: menu"></div>
+    <div id="popup" ng-show="popup.view">
+        <div class="wrapper" ng-show="popup.view">
+            <div class="close">
+                <i class="remove-white square-15" ng-click="closePopup()"></i>
+            </div>
+            <div class="popup" ng-scrollbar rebuild-on="rebuild:scrollbar" rebuild-on-resize>
+                <user-detail ng-if="popup.user"></user-detail>
+            </div>
+        </div>
+    </div>
+    <div th:replace="global/header :: header"></div>
+    <div id="content" ng-init="initializePagination()">
+        <div class="wrapper">
+            <div class="navigation">
+                <div class="breadcrumb">
+                    <p>
+                        <a th:href="${global.setting.url.base + '/'}">Home</a>
+                        <i class="next-white square-10 margin-left-5"></i>
+                    </p>
+                    <p>User</p>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="action">
+                    <a class="add" th:href="${global.setting.url.base + '/user/entry/'}">
+                        <i class="plus-white square-15 margin-right-5"></i>Add New
+                    </a>
+                </div>
+            </div>
+            <div class="filter">
+                <form action="" class="filter" method="POST">
+                    <input class="id" name="user-filter-id" ng-model="filter.id.value" placeholder="ID" type="text"/>
+                    <input name="user-filter-username" ng-model="filter.username.value" placeholder="Username" type="text"/>
+                    <input name="user-filter-name-first" ng-model="filter.name.first.value" placeholder="First Name" type="text"/>
+                    <input name="user-filter-name-middle" ng-model="filter.name.middle.value" placeholder="Middle Name" type="text"/>
+                    <input name="user-filter-name-last" ng-model="filter.name.last.value" placeholder="Last Name" type="text"/>
+                    <md-input-container>
+                        <md-select ng-model="filter.gender.selected" placeholder="Gender">
+                            <md-option ng-repeat="data in filter.gender.option" ng-value="data">
+                                {{data.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-select ng-model="filter.country.selected" placeholder="Country">
+                            <md-option ng-repeat="data in filter.country.option" ng-value="data">
+                                {{data.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-select ng-model="filter.type.selected" placeholder="Type">
+                            <md-option ng-repeat="data in filter.type.option" ng-value="data">
+                                {{data.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-select ng-model="filter.role.selected" placeholder="Role">
+                            <md-option ng-repeat="data in filter.role.option" ng-value="data">
+                                {{data.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-select ng-model="filter.group.selected" placeholder="Group">
+                            <md-option ng-repeat="data in filter.group.option" ng-value="data">
+                                {{data.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-select ng-model="filter.status.selected" placeholder="Status">
+                            <md-option ng-repeat="data in filter.status.option" ng-value="data">
+                                {{data.name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <input class="date-range-picker" name="user-filter-created-timestamp" ng-model="filter.createdDate.value" placeholder="Created Date Range" type="text"/>
+                    <button class="filter yellow" name="user-filter" ng-click="filterPagination($event)">
+                        <i class="filter-white square-15 margin-right-5"></i>Filter
+                    </button>
+                    <button class="remove-filter blue" name="user-remove-filter" ng-click="removeFilterPagination($event)">
+                        <i class="refresh-white square-15 margin-right-5"></i>Remove Filter
+                    </button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+            <div class="content">
+                <form action="" class="page-entry" method="POST">
+                    <p>Page Entry</p>
+                    <input name="user-page-entry" ng-model="site.page.size" placeholder="Page" type="text"/>
+                    <button class="green" name="user-page" ng-click="setPagination($event)">
+                        <i class="cloud-white square-15 margin-right-5"></i>Set Page
+                    </button>
+                    <div class="clearfix"></div>
+                </form>
+                <table class="data-list">
+                    <tr>
+                        <th class="index">
+                            <p>#</p>
+                        </th>
+                        <th>
+                            <p>Username</p>
+                        </th>
+                        <th>
+                            <p>Name</p>
+                        </th>
+                        <th>
+                            <p>Type</p>
+                        </th>
+                        <th>
+                            <p>Role</p>
+                        </th>
+                        <th>
+                            <p>Group</p>
+                        </th>
+                        <th>
+                            <p>Status</p>
+                        </th>
+                        <th>
+                            <p>Last Modified Date</p>
+                        </th>
+                        <th class="action">
+                            <p>Action</p>
+                        </th>
+                    </tr>
+                    <tr th:class="${data.id}" th:each="data, iteration : ${pagination}" th:if="${not #strings.isEmpty(data.id)}" th:ng-dblclick="${'loadDetail(''' + data.id + ''')'}">
+                        <td>
+                            <p th:text="${page + iteration.index}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${data.username}"></p>
+                        </td>
+                        <td>
+                            <p th:if="${#strings.isEmpty(data.name.middle) && #strings.isEmpty(data.name.last)}" th:text="${data.name.first}"></p>
+                            <p th:if="${not #strings.isEmpty(data.name.middle) && #strings.isEmpty(data.name.last)}" th:text="${data.name.first + ' ' + data.name.middle}"></p>
+                            <p th:if="${#strings.isEmpty(data.name.middle) && not #strings.isEmpty(data.name.last)}" th:text="${data.name.first + ' ' + data.name.last}"></p>
+                            <p th:if="${not #strings.isEmpty(data.name.middle) && not #strings.isEmpty(data.name.last)}" th:text="${data.name.first + ' ' + data.name.middle + ' ' + data.name.last}"></p>
+                        </td>
+                        <td>
+                            <p class="sentence-case" th:text="${data.type}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${data.role.name}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${data.group.name}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${data.status}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${#dates.format(data.modified.timestamp, 'yyyy-MM-dd HH:mm:ss')}"></p>
+                        </td>
+                        <td class="action">
+                            <div>
+                                <a th:href="${global.setting.url.base + '/user/entry/' + data.id + '/'}">
+                                    <i class="pencil-white square-15"></i>
+                                </a>
+                                <form action="" method="POST">
+                                    <button class="delete red" name="delete" th:ng-click="${'delete(''' + data.id + ''', $event)'}">
+                                        <i class="trash-white square-15"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="pagination">
+                    [[${link}]]
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="global/footer :: footer"></div>
+</div>
+</body>
+</html>

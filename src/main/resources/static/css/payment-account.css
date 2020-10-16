@@ -1,0 +1,1105 @@
+/*==================== Basic ====================*/
+/*==================== Content ====================*/
+div.filter form input.id {
+    margin: 0 10px 10px 0;
+}
+
+div.filter form input:nth-child(2) {
+    margin: 0 10px 10px 0;
+    width: 364px;
+}
+
+div.filter form input:nth-child(3) {
+    margin: 0 10px 10px 0;
+    width: 363px;
+}
+
+div.filter form input:nth-child(4) {
+    margin: 0 0 10px 0;
+    width: 363px;
+}
+
+div.filter form md-input-container:nth-child(5) {
+    margin: 0 10px 10px 0;
+    width: 323px;
+}
+
+div.filter form md-input-container:nth-child(6) {
+    margin: 0 10px 10px 0;
+    width: 323px;
+}
+
+div.filter form input:nth-child(7) {
+    margin: 0 10px 10px 0;
+    width: 304px;
+}
+
+div.mutation form input.id {
+    margin: 0 10px 10px 0;
+}
+
+div.mutation form input:nth-child(2) {
+    margin: 0 10px 10px 0;
+    width: 265px;
+}
+
+div.mutation form input:nth-child(3) {
+    margin: 0 10px 10px 0;
+    width: 265px;
+}
+
+div.mutation form input:nth-child(4) {
+    margin: 0 10px 10px 0;
+    width: 265px;
+}
+
+div.mutation form input:nth-child(5) {
+    margin: 0 0 10px 0;
+    width: 265px;
+}
+
+div.mutation form md-input-container:nth-child(6) {
+    margin: 0 10px 10px 0;
+    width: 323px;
+}
+
+div.mutation form md-input-container:nth-child(7) {
+    margin: 0 10px 10px 0;
+    width: 323px;
+}
+
+div.mutation form input:nth-child(8) {
+    margin: 0 10px 10px 0;
+    width: 304px;
+}
+
+@media only screen and (max-width: 359px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        margin: 0 0 10px 0;
+        width: 170px;
+    }
+
+    div.filter form input:nth-child(3) {
+        width: 115px;
+    }
+
+    div.filter form input:nth-child(4) {
+        width: 115px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 135px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 135px;
+    }
+
+    div.filter form input:nth-child(7) {
+        margin: 0 0 10px 0;
+        width: 260px;
+    }
+
+    div.filter form button.filter {
+        margin: 0 10px 0 10px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        margin: 0 0 10px 0;
+        width: 170px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        width: 115px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        margin: 0 0 10px 0;
+        width: 115px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        margin: 0 10px 10px 0;
+        width: 115px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 135px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        margin: 0 10px 10px 0;
+        width: 135px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        margin: 0 0 10px 0;
+        width: 115px;
+    }
+
+    div.mutation form button.mutation {
+        margin: 0 10px 0 10px;
+    }
+
+    div.content .data-list th:nth-child(3),
+    div.content .data-list td:nth-child(3),
+    div.content .data-list th:nth-child(4),
+    div.content .data-list td:nth-child(4),
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6) {
+        display: none;
+    }
+
+    div.content .mutation th:nth-child(3),
+    div.content .mutation td:nth-child(3),
+    div.content .mutation th:nth-child(4),
+    div.content .mutation td:nth-child(4),
+    div.content .mutation th:nth-child(5),
+    div.content .mutation td:nth-child(5),
+    div.content .mutation th:nth-child(6),
+    div.content .mutation td:nth-child(6),
+    div.content .mutation th:nth-child(7),
+    div.content .mutation td:nth-child(7),
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 360px) and (max-width: 479px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        margin: 0 0 10px 0;
+        width: 210px;
+    }
+
+    div.filter form input:nth-child(3) {
+        width: 135px;
+    }
+
+    div.filter form input:nth-child(4) {
+        width: 135px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 155px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 155px;
+    }
+
+    div.filter form input:nth-child(7) {
+        margin: 0 0 10px 0;
+        width: 300px;
+    }
+
+    div.filter form button.filter {
+        margin: 0 10px 0 30px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        margin: 0 0 10px 0;
+        width: 210px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        width: 135px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        margin: 0 0 10px 0;
+        width: 135px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        margin: 0 10px 10px 0;
+        width: 135px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 155px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        margin: 0 10px 10px 0;
+        width: 155px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        margin: 0 0 10px 0;
+        width: 135px;
+    }
+
+    div.mutation form button.mutation {
+        margin: 0 10px 0 30px;
+    }
+
+    div.content .data-list th:nth-child(3),
+    div.content .data-list td:nth-child(3),
+    div.content .data-list th:nth-child(4),
+    div.content .data-list td:nth-child(4),
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6) {
+        display: none;
+    }
+
+    div.content .mutation th:nth-child(3),
+    div.content .mutation td:nth-child(3),
+    div.content .mutation th:nth-child(4),
+    div.content .mutation td:nth-child(4),
+    div.content .mutation th:nth-child(5),
+    div.content .mutation td:nth-child(5),
+    div.content .mutation th:nth-child(6),
+    div.content .mutation td:nth-child(6),
+    div.content .mutation th:nth-child(7),
+    div.content .mutation td:nth-child(7),
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 599px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 150px;
+    }
+
+    div.filter form input:nth-child(3) {
+        margin: 0 0 10px 0;
+        width: 150px;
+    }
+
+    div.filter form input:nth-child(4) {
+        margin: 0 10px 10px 0;
+        width: 120px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 140px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 140px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 150px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 150px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        margin: 0 0 10px 0;
+        width: 150px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 120px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        margin: 0 10px 10px 0;
+        width: 120px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 140px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 215px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        margin: 0 0 10px 0;
+        width: 195px;
+    }
+
+    div.mutation form button.mutation {
+        margin: 0 10px 0 90px;
+    }
+
+    div.content .data-list th:nth-child(3),
+    div.content .data-list td:nth-child(3),
+    div.content .data-list th:nth-child(4),
+    div.content .data-list td:nth-child(4),
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6) {
+        display: none;
+    }
+
+    div.content .mutation th:nth-child(3),
+    div.content .mutation td:nth-child(3),
+    div.content .mutation th:nth-child(4),
+    div.content .mutation td:nth-child(4),
+    div.content .mutation th:nth-child(5),
+    div.content .mutation td:nth-child(5),
+    div.content .mutation th:nth-child(7),
+    div.content .mutation td:nth-child(7),
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 600px) and (max-width: 639px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 210px;
+    }
+
+    div.filter form input:nth-child(3) {
+        margin: 0 0 10px 0;
+        width: 210px;
+    }
+
+    div.filter form input:nth-child(4) {
+        margin: 0 10px 10px 0;
+        width: 160px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 180px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 180px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 270px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 210px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        margin: 0 0 10px 0;
+        width: 210px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 160px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        margin: 0 10px 10px 0;
+        width: 160px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 180px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 140px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        width: 120px;
+    }
+
+    div.content .data-list th:nth-child(4),
+    div.content .data-list td:nth-child(4),
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6) {
+        display: none;
+    }
+
+    div.content .mutation th:nth-child(3),
+    div.content .mutation td:nth-child(3),
+    div.content .mutation th:nth-child(4),
+    div.content .mutation td:nth-child(4),
+    div.content .mutation th:nth-child(5),
+    div.content .mutation td:nth-child(5),
+    div.content .mutation th:nth-child(7),
+    div.content .mutation td:nth-child(7),
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 640px) and (max-width: 767px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 230px;
+    }
+
+    div.filter form input:nth-child(3) {
+        margin: 0 0 10px 0;
+        width: 230px;
+    }
+
+    div.filter form input:nth-child(4) {
+        margin: 0 10px 10px 0;
+        width: 174px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 193px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 193px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 310px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 230px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        margin: 0 0 10px 0;
+        width: 230px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 173px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        margin: 0 10px 10px 0;
+        width: 174px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 193px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 160px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        width: 140px;
+    }
+
+    div.content .data-list th:nth-child(4),
+    div.content .data-list td:nth-child(4),
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6) {
+        display: none;
+    }
+
+    div.content .mutation th:nth-child(3),
+    div.content .mutation td:nth-child(3),
+    div.content .mutation th:nth-child(4),
+    div.content .mutation td:nth-child(4),
+    div.content .mutation th:nth-child(5),
+    div.content .mutation td:nth-child(5),
+    div.content .mutation th:nth-child(7),
+    div.content .mutation td:nth-child(7),
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 799px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 186px;
+    }
+
+    div.filter form input:nth-child(3) {
+        width: 186px;
+    }
+
+    div.filter form input:nth-child(4) {
+        width: 186px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 146px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        width: 146px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 126px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 132px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        width: 132px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 132px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        width: 132px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        width: 146px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 146px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        width: 126px;
+    }
+
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6) {
+        display: none;
+    }
+
+    div.content .mutation th:nth-child(3),
+    div.content .mutation td:nth-child(3),
+    div.content .mutation th:nth-child(4),
+    div.content .mutation td:nth-child(4),
+    div.content .mutation th:nth-child(7),
+    div.content .mutation td:nth-child(7),
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 800px) and (max-width: 899px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 197px;
+    }
+
+    div.filter form input:nth-child(3) {
+        width: 196px;
+    }
+
+    div.filter form input:nth-child(4) {
+        width: 197px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 157px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        width: 156px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 137px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 140px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        width: 140px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 140px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        width: 140px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        width: 157px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 156px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        width: 137px;
+    }
+
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6) {
+        display: none;
+    }
+
+    div.content .mutation th:nth-child(3),
+    div.content .mutation td:nth-child(3),
+    div.content .mutation th:nth-child(4),
+    div.content .mutation td:nth-child(4),
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 900px) and (max-width: 979px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 230px;
+    }
+
+    div.filter form input:nth-child(3) {
+        width: 230px;
+    }
+
+    div.filter form input:nth-child(4) {
+        width: 230px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 190px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        width: 190px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 170px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 165px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        width: 165px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 165px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        width: 165px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        width: 190px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 190px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        width: 170px;
+    }
+
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6) {
+        display: none;
+    }
+
+    div.content .mutation th:nth-child(4),
+    div.content .mutation td:nth-child(4),
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 980px) and (max-width: 1023px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 257px;
+    }
+
+    div.filter form input:nth-child(3) {
+        width: 256px;
+    }
+
+    div.filter form input:nth-child(4) {
+        width: 257px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 217px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        width: 216px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 197px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 185px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        width: 185px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 185px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        width: 185px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        width: 217px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 216px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        width: 197px;
+    }
+
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6) {
+        display: none;
+    }
+
+    div.content .mutation th:nth-child(4),
+    div.content .mutation td:nth-child(4),
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 272px;
+    }
+
+    div.filter form input:nth-child(3) {
+        width: 271px;
+    }
+
+    div.filter form input:nth-child(4) {
+        width: 271px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 231px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        width: 231px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 212px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 196px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        width: 196px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 196px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        width: 196px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        width: 231px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 231px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        width: 212px;
+    }
+
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6) {
+        display: none;
+    }
+
+    div.content .mutation th:nth-child(4),
+    div.content .mutation td:nth-child(4),
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1359px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 347px;
+    }
+
+    div.filter form input:nth-child(3) {
+        width: 346px;
+    }
+
+    div.filter form input:nth-child(4) {
+        width: 347px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 307px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        width: 306px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 287px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 252px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        width: 253px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 253px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        width: 252px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        width: 307px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 306px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        width: 287px;
+    }
+
+    div.content .mutation th:nth-child(8),
+    div.content .mutation td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 1360px) and (max-width: 1599px) {
+
+    /* Not set yet */
+
+}
+
+@media only screen and (min-width: 1600px) and (max-width: 1919px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input.id {
+        width: 100px;
+    }
+
+    div.filter form input:nth-child(2) {
+        width: 417px;
+    }
+
+    div.filter form input:nth-child(3) {
+        width: 416px;
+    }
+
+    div.filter form input:nth-child(4) {
+        width: 417px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 390px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        width: 390px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 370px;
+    }
+
+    div.mutation form input.id {
+        width: 100px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 123px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        width: 123px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 123px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        margin: 0 10px 10px 0;
+        width: 123px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        width: 143px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 142px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        width: 123px;
+    }
+
+}
+
+@media only screen and (min-width: 1920px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input.id {
+        width: 100px;
+    }
+
+    div.filter form input:nth-child(2) {
+        width: 199px;
+    }
+
+    div.filter form input:nth-child(3) {
+        width: 198px;
+    }
+
+    div.filter form input:nth-child(4) {
+        margin: 0 10px 10px 0;
+        width: 198px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 218px;
+    }
+
+    div.filter form md-input-container:nth-child(6) {
+        width: 218px;
+    }
+
+    div.filter form input:nth-child(7) {
+        width: 199px;
+    }
+
+    div.mutation form input.id {
+        width: 100px;
+    }
+
+    div.mutation form input:nth-child(2) {
+        width: 166px;
+    }
+
+    div.mutation form input:nth-child(3) {
+        width: 166px;
+    }
+
+    div.mutation form input:nth-child(4) {
+        width: 166px;
+    }
+
+    div.mutation form input:nth-child(5) {
+        margin: 0 10px 10px 0;
+        width: 166px;
+    }
+
+    div.mutation form md-input-container:nth-child(6) {
+        width: 185px;
+    }
+
+    div.mutation form md-input-container:nth-child(7) {
+        width: 185px;
+    }
+
+    div.mutation form input:nth-child(8) {
+        width: 166px;
+    }
+
+}

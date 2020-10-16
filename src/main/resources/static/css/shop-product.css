@@ -1,0 +1,561 @@
+/*==================== Basic ====================*/
+
+/*==================== Content ====================*/
+div.filter form input.id {
+    margin: 0 10px 10px 0;
+}
+
+div.filter form input:nth-child(2) {
+    margin: 0 10px 10px 0;
+    width: 152px;
+}
+
+div.filter form md-input-container:nth-child(3) {
+    margin: 0 10px 10px 0;
+    width: 172px;
+}
+
+div.filter form md-input-container:nth-child(4) {
+    margin: 0 10px 10px 0;
+    width: 172px;
+}
+
+div.filter form md-input-container:nth-child(5) {
+    margin: 0 10px 10px 0;
+    width: 172px;
+}
+
+div.filter form input:nth-child(6) {
+    margin: 0 10px 10px 0;
+    width: 152px;
+}
+
+table.data-list tr td:nth-child(2) {
+    max-width: 300px;
+}
+
+table.data-list tr td:nth-child(4) {
+    max-width: 150px;
+}
+
+@media only screen and (max-width: 359px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        margin: 0 0 10px 0;
+        width: 170px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        width: 135px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        margin: 0 0 10px 0;
+        width: 135px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 135px;
+    }
+
+    div.filter form input:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 115px;
+    }
+
+    div.filter form button.filter {
+        margin: 0 10px 0 10px;
+    }
+
+    div.content .data-list th:nth-child(3),
+    div.content .data-list td:nth-child(3),
+    div.content .data-list th:nth-child(4),
+    div.content .data-list td:nth-child(4),
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6),
+    div.content .data-list th:nth-child(7),
+    div.content .data-list td:nth-child(7),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 360px) and (max-width: 479px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        margin: 0 0 10px 0;
+        width: 210px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        width: 155px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        margin: 0 0 10px 0;
+        width: 155px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 155px;
+    }
+
+    div.filter form input:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 135px;
+    }
+
+    div.filter form button.filter {
+        margin: 0 10px 0 30px;
+    }
+
+    div.content .data-list th:nth-child(3),
+    div.content .data-list td:nth-child(3),
+    div.content .data-list th:nth-child(4),
+    div.content .data-list td:nth-child(4),
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6),
+    div.content .data-list th:nth-child(7),
+    div.content .data-list td:nth-child(7),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 599px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 150px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        margin: 0 0 10px 0;
+        width: 170px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        width: 140px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 140px;
+    }
+
+    div.filter form input:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 120px;
+    }
+
+    div.filter form button.filter {
+        margin: 0 10px 0 90px;
+    }
+
+    div.content .data-list th:nth-child(4),
+    div.content .data-list td:nth-child(4),
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6),
+    div.content .data-list th:nth-child(7),
+    div.content .data-list td:nth-child(7),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 600px) and (max-width: 639px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 210px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        margin: 0 0 10px 0;
+        width: 230px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        width: 180px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 180px;
+    }
+
+    div.filter form input:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 160px;
+    }
+
+    div.filter form button.filter {
+        margin: 0 10px 0 150px;
+    }
+
+    div.content .data-list th:nth-child(4),
+    div.content .data-list td:nth-child(4),
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6),
+    div.content .data-list th:nth-child(7),
+    div.content .data-list td:nth-child(7),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 640px) and (max-width: 767px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 230px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        margin: 0 0 10px 0;
+        width: 250px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        width: 193px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 193px;
+    }
+
+    div.filter form input:nth-child(6) {
+        margin: 0 0 10px 0;
+        width: 174px;
+    }
+
+    div.filter form button.filter {
+        margin: 0 10px 0 170px;
+    }
+
+    div.content .data-list th:nth-child(4),
+    div.content .data-list td:nth-child(4),
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6),
+    div.content .data-list th:nth-child(7),
+    div.content .data-list td:nth-child(7),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 799px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 186px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        width: 206px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        margin: 0 0 10px 0;
+        width: 206px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 224px;
+    }
+
+    div.filter form input:nth-child(6) {
+        width: 204px;
+    }
+
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6),
+    div.content .data-list th:nth-child(7),
+    div.content .data-list td:nth-child(7),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 800px) and (max-width: 899px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 197px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        width: 217px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        margin: 0 0 10px 0;
+        width: 216px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 240px;
+    }
+
+    div.filter form input:nth-child(6) {
+        width: 220px;
+    }
+
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(6),
+    div.content .data-list td:nth-child(6),
+    div.content .data-list th:nth-child(7),
+    div.content .data-list td:nth-child(7),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 900px) and (max-width: 979px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 230px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        width: 250px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        margin: 0 0 10px 0;
+        width: 250px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 290px;
+    }
+
+    div.filter form input:nth-child(6) {
+        width: 270px;
+    }
+
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(7),
+    div.content .data-list td:nth-child(7),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 980px) and (max-width: 1023px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 185px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        width: 205px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        width: 205px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        margin: 0 0 10px 0;
+        width: 205px;
+    }
+
+    div.filter form input:nth-child(6) {
+        width: 650px;
+    }
+
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(7),
+    div.content .data-list td:nth-child(7),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 196px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        width: 216px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        width: 216px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        margin: 0 0 10px 0;
+        width: 216px;
+    }
+
+    div.filter form input:nth-child(6) {
+        width: 694px;
+    }
+
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(7),
+    div.content .data-list td:nth-child(7),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1359px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input:nth-child(2) {
+        width: 142px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        width: 162px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        width: 162px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 162px;
+    }
+
+    div.filter form input:nth-child(6) {
+        width: 142px;
+    }
+
+    div.content .data-list th:nth-child(5),
+    div.content .data-list td:nth-child(5),
+    div.content .data-list th:nth-child(8),
+    div.content .data-list td:nth-child(8) {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 1360px) and (max-width: 1599px) {
+
+    /* Not set yet */
+
+}
+
+@media only screen and (min-width: 1600px) and (max-width: 1919px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input.id {
+        width: 100px;
+    }
+
+    div.filter form input:nth-child(2) {
+        width: 184px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        width: 204px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        width: 204px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 204px;
+    }
+
+    div.filter form input:nth-child(6) {
+        width: 184px;
+    }
+
+    table.data-list tr td:nth-child(2) {
+        max-width: 500px;
+    }
+
+}
+
+@media only screen and (min-width: 1920px) {
+
+    /*==================== Basic ====================*/
+    /*==================== Content ====================*/
+    div.filter form input.id {
+        width: 100px;
+    }
+
+    div.filter form input:nth-child(2) {
+        width: 244px;
+    }
+
+    div.filter form md-input-container:nth-child(3) {
+        width: 264px;
+    }
+
+    div.filter form md-input-container:nth-child(4) {
+        width: 264px;
+    }
+
+    div.filter form md-input-container:nth-child(5) {
+        width: 264px;
+    }
+
+    div.filter form input:nth-child(6) {
+        width: 244px;
+    }
+
+    table.data-list tr td:nth-child(2) {
+        max-width: 800px;
+    }
+
+}

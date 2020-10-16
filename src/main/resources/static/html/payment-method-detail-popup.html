@@ -1,0 +1,113 @@
+<div class="accordion" ng-init="initializeLayout()">
+    <p class="accordion-navigation" data-index="1" ng-click="rebuild()">
+        Detail<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="1">
+        <p class="title">ID</p>
+        <div class="data">{{id.value}}</div>
+        <p class="title">Name</p>
+        <div class="data">{{name.value}}</div>
+        <p class="title">Type</p>
+        <div class="data">{{type.value}}</div>
+        <p class="title">Description</p>
+        <div class="data">{{description.value}}</div>
+        <p class="title">Sequence</p>
+        <div class="data">{{sequence.value}}</div>
+        <p class="title">Status</p>
+        <div class="data">{{status.value}}</div>
+        <p class="title">Created Date</p>
+        <div class="data">{{created.timestamp.value}}</div>
+        <p class="title">Modified Date</p>
+        <div class="data">{{modified.timestamp.value}}</div>
+    </div>
+    <p class="accordion-navigation" data-index="2" ng-click="rebuild()">
+        Display<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="2">
+        <p class="title">On Footer</p>
+        <div class="data">
+            <md-switch aria-label="On Footer" class="md-warn" ng-disabled="true" ng-false-value="false" ng-model="footer.display.value" ng-true-value="true">
+                {{footer.display.name}}
+            </md-switch>
+        </div>
+        <p class="title">On Sidebar</p>
+        <div class="data">
+            <md-switch aria-label="On Sidebar" class="md-warn" ng-disabled="true" ng-false-value="false" ng-model="sidebar.display.value" ng-true-value="true">
+                {{sidebar.display.name}}
+            </md-switch>
+        </div>
+        <p class="title">On Payment</p>
+        <div class="data">
+            <md-switch aria-label="On Payment" class="md-warn" ng-disabled="true" ng-false-value="false" ng-model="payment.display.value" ng-true-value="true">
+                {{payment.display.name}}
+            </md-switch>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="3" ng-click="rebuild()">
+        File<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="3">
+        <p class="title file">Footer Logo</p>
+        <div class="file-list" ng-if="footer.logo.upload.view">
+            <span>
+                <img class="responsive" ng-src="{{footer.logo.upload.file}}">
+            </span>
+        </div>
+        <p class="title file">Sidebar Logo</p>
+        <div class="file-list" ng-if="sidebar.logo.upload.view">
+            <span>
+                <img class="responsive" ng-src="{{sidebar.logo.upload.file}}">
+            </span>
+        </div>
+        <p class="title file">Payment Logo</p>
+        <div class="file-list" ng-if="payment.logo.upload.view">
+            <span>
+                <img class="responsive" ng-src="{{footer.logo.upload.file}}">
+            </span>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="4" ng-click="rebuild()">
+        Business Hour<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content data-entry" data-index="4">
+        <p class="title">Monday</p>
+        <div class="data">{{businessHour.monday.start.value}} - {{businessHour.monday.end.value}}</div>
+        <p class="title">Tuesday</p>
+        <div class="data">{{businessHour.tuesday.start.value}} - {{businessHour.tuesday.end.value}}</div>
+        <p class="title">Wednesday</p>
+        <div class="data">{{businessHour.wednesday.start.value}} - {{businessHour.wednesday.end.value}}</div>
+        <p class="title">Thursday</p>
+        <div class="data">{{businessHour.thursday.start.value}} - {{businessHour.thursday.end.value}}</div>
+        <p class="title">Friday</p>
+        <div class="data">{{businessHour.friday.start.value}} - {{businessHour.friday.end.value}}</div>
+        <p class="title">Saturday</p>
+        <div class="data">{{businessHour.saturday.start.value}} - {{businessHour.saturday.end.value}}</div>
+        <p class="title">Sunday</p>
+        <div class="data">{{businessHour.sunday.start.value}} - {{businessHour.sunday.end.value}}</div>
+    </div>
+    <p class="accordion-navigation" data-index="5" ng-click="rebuild()">
+        Company<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="5">
+        <div class="checkbox-list">
+            <div ng-repeat="data in company.option">
+                <md-checkbox ng-checked="company.idList.value.indexOf(data.id) > -1" ng-click="$event.preventDefault()">
+                    {{data.name}}
+                </md-checkbox>
+            </div>
+        </div>
+    </div>
+    <p class="accordion-navigation" data-index="6" ng-click="rebuild()">
+        Branch<span><i class="plus-white square-10"></i></span>
+    </p>
+    <div class="accordion-content list-entry" data-index="6">
+        <div class="checkbox-list">
+            <div ng-repeat="data in company.branch.option">
+                <md-checkbox ng-checked="company.branch.idList.value.indexOf(data.id) > -1" ng-click="$event.preventDefault()">
+                    {{data.name}}
+                </md-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="separator"></div>
+</div>
