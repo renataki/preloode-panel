@@ -13,10 +13,7 @@ import com.preloode.panel.enumeration.user.UserType;
 import com.preloode.panel.model.global.BaseResponse;
 import com.preloode.panel.model.global.CreditReference;
 import com.preloode.panel.model.payment.PaymentAccount;
-import com.preloode.panel.model.transaction.Transaction;
-import com.preloode.panel.model.transaction.TransactionLogData;
-import com.preloode.panel.model.transaction.TransactionPaymentAccountFilter;
-import com.preloode.panel.model.transaction.TransactionResponse;
+import com.preloode.panel.model.transaction.*;
 import com.preloode.panel.model.user.User;
 import com.preloode.panel.repository.global.GlobalRepository;
 import com.preloode.panel.repository.payment.PaymentAccountRepository;
@@ -37,6 +34,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -544,6 +542,90 @@ public class TransactionService {
         result.setResult(true);
 
         logger.info(result.getResponse());
+
+        return result;
+
+    }
+
+
+    public TransactionResponse initializeSummary() {
+
+        TransactionResponse result = new TransactionResponse() {
+            {
+                setResponse("Failed to initialize transaction summary");
+                setResult(false);
+            }
+        };
+
+        Calendar todayStart = Calendar.getInstance();
+        todayStart.set(todayStart.get(Calendar.YEAR), todayStart.get(Calendar.MONTH), todayStart.get(Calendar.DATE), 0, 0, 0);
+        Calendar todayEnd = Calendar.getInstance();
+        todayEnd.set(todayEnd.get(Calendar.YEAR), todayEnd.get(Calendar.MONTH), todayEnd.get(Calendar.DATE), 23, 59, 59);
+        Calendar yesterdayStart = Calendar.getInstance();
+        yesterdayStart.set(yesterdayStart.get(Calendar.YEAR), yesterdayStart.get(Calendar.MONTH), yesterdayStart.get(Calendar.DATE), 0, 0, 0);
+        yesterdayStart.add(Calendar.DATE, -1);
+        Calendar yesterdayEnd = Calendar.getInstance();
+        yesterdayEnd.set(yesterdayEnd.get(Calendar.YEAR), yesterdayEnd.get(Calendar.MONTH), yesterdayEnd.get(Calendar.DATE), 23, 59, 59);
+        yesterdayEnd.add(Calendar.DATE, -1);
+
+        List<Sort.Order> sort = new ArrayList<>() {
+            {
+                add(new Sort.Order(Sort.Direction.ASC, "created.timestamp"));
+            }
+        };
+        List<Transaction> transactionTodayList = transactionRepository.findGreaterEqualLessThanEqualCreateadTimestampSort(todayStart.getTime(), todayEnd.getTime(), Sort.by(sort));
+        List<Transaction> transactionYesterdayList = transactionRepository.findGreaterEqualLessThanEqualCreateadTimestampSort(yesterdayStart.getTime(), yesterdayEnd.getTime(), Sort.by(sort));
+
+        TransactionSummaryReference transactionSummary = new TransactionSummaryReference(
+                new TransactionSummaryDepositReference(
+                        new TransactionSummaryAmountReference(
+                                BigDecimal.ZERO,
+                                BigDecimal.ZERO,
+                                BigDecimal.ZERO,
+                                BigDecimal.ZERO,
+                                BigDecimal.ZERO,
+                                BigDecimal.ZERO,
+                                transactionTodayList.stream().filter(transactionToday -> transactionToday.getType().equals(TransactionType.Deposit)).map(Transaction::getAmount).map(CreditReference::getMain).reduce(BigDecimal.ZERO, BigDecimal::add),
+                                transactionYesterdayList.stream().filter(transactionYesterday -> transactionYesterday.getType().equals(TransactionType.Deposit)).map(Transaction::getAmount).map(CreditReference::getMain).reduce(BigDecimal.ZERO, BigDecimal::add)
+                        ),
+                        new TransactionSummaryCountReference(
+                                BigInteger.ZERO,
+                                BigInteger.ZERO,
+                                BigInteger.ZERO,
+                                BigInteger.ZERO,
+                                BigInteger.ZERO,
+                                BigInteger.ZERO,
+                                new BigInteger(String.valueOf(transactionTodayList.stream().filter(transactionToday -> transactionToday.getType().equals(TransactionType.Deposit)).count())),
+                                new BigInteger(String.valueOf(transactionYesterdayList.stream().filter(transactionYesterday -> transactionYesterday.getType().equals(TransactionType.Deposit)).count()))
+                        )
+                ),
+                new TransactionSummaryWithdrawalReference(
+                        new TransactionSummaryAmountReference(
+                                BigDecimal.ZERO,
+                                BigDecimal.ZERO,
+                                BigDecimal.ZERO,
+                                BigDecimal.ZERO,
+                                BigDecimal.ZERO,
+                                BigDecimal.ZERO,
+                                transactionTodayList.stream().filter(transactionToday -> transactionToday.getType().equals(TransactionType.Withdrawal)).map(Transaction::getAmount).map(CreditReference::getMain).reduce(BigDecimal.ZERO, BigDecimal::subtract),
+                                transactionYesterdayList.stream().filter(transactionYesterday -> transactionYesterday.getType().equals(TransactionType.Withdrawal)).map(Transaction::getAmount).map(CreditReference::getMain).reduce(BigDecimal.ZERO, BigDecimal::subtract)
+                        ),
+                        new TransactionSummaryCountReference(
+                                BigInteger.ZERO,
+                                BigInteger.ZERO,
+                                BigInteger.ZERO,
+                                BigInteger.ZERO,
+                                BigInteger.ZERO,
+                                BigInteger.ZERO,
+                                new BigInteger(String.valueOf(transactionTodayList.stream().filter(transactionToday -> transactionToday.getType().equals(TransactionType.Withdrawal)).count())),
+                                new BigInteger(String.valueOf(transactionYesterdayList.stream().filter(transactionYesterday -> transactionYesterday.getType().equals(TransactionType.Withdrawal)).count()))
+                        )
+                )
+        );
+        result.setTransactionSummary(transactionSummary);
+
+        result.setResponse("Transaction summary initialized");
+        result.setResult(true);
 
         return result;
 

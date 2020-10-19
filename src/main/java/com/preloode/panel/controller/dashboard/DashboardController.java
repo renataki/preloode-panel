@@ -2,11 +2,13 @@ package com.preloode.panel.controller.dashboard;
 
 import com.preloode.panel.configuration.global.GlobalConfiguration;
 import com.preloode.panel.model.user.User;
+import com.preloode.panel.service.transaction.TransactionService;
 import com.preloode.panel.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +26,9 @@ public class DashboardController {
 
     @Autowired
     private GlobalConfiguration global;
+
+    @Autowired
+    private TransactionService transactionService;
 
     @Autowired
     private UserService userService;
@@ -54,11 +59,13 @@ public class DashboardController {
 
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String index(HttpServletRequest request) {
+    public String index(HttpServletRequest request, Model model) {
 
         String checkLogin = userService.checkLogin(request);
 
         if(!checkLogin.isEmpty()) {
+
+            model.addAttribute("summary", transactionService.initializeSummary().getTransactionSummary());
 
             logger.info("Dashboard page initialized");
 

@@ -27,4 +27,8 @@ public interface TransactionRepository extends MongoRepository<Transaction, Stri
     public List<Transaction> findByStatusSort(Status status, Sort sort);
 
 
+    @Query("{'created.timestamp': {$gte: ?0, $lte: ?1}}")
+    public List<Transaction> findGreaterEqualLessThanEqualCreateadTimestampSort(Date createdTimestampStart, Date createdTimestampEnd, Sort sort);
+
+
 }

@@ -28,6 +28,82 @@
                     </div>
                 </div>
             </div>
+            <div class="content summary">
+                <div class="summary-carousel owl-carousel owl-theme">
+                    <div class="item registration">
+                        <h2>Register New Member Today</h2>
+                        <p th:utext="0"></p>
+                    </div>
+                    <div class="item deposit">
+                        <h2>Deposit Count New Member Today</h2>
+                        <p th:utext="0"></p>
+                    </div>
+                    <div class="item deposit">
+                        <h2>Deposit Amount New Member Today</h2>
+                        <p th:utext="0"></p>
+                    </div>
+                    <div class="item withdrawal">
+                        <h2>Withdrawal Count New Member Today</h2>
+                        <p th:utext="0"></p>
+                    </div>
+                    <div class="item withdrawal">
+                        <h2>Withdrawal Amount New Member Today</h2>
+                        <p th:utext="0"></p>
+                    </div>
+                    <div class="item deposit">
+                        <h2>Deposit Count Today</h2>
+                        <p th:utext="${#numbers.formatDecimal(summary.deposit.count.today, 1, 'COMMA', 0, 'POINT')}"></p>
+                    </div>
+                    <div class="item deposit">
+                        <h2>Deposit Amount Today</h2>
+                        <p th:utext="${#numbers.formatDecimal(summary.deposit.amount.today, 1, 'COMMA', 2, 'POINT')}"></p>
+                    </div>
+                    <div class="item withdrawal">
+                        <h2>Withdrawal Count Today</h2>
+                        <p th:utext="${#numbers.formatDecimal(summary.withdrawal.count.today, 1, 'COMMA', 0, 'POINT')}"></p>
+                    </div>
+                    <div class="item withdrawal">
+                        <h2>Withdrawal Amount Today</h2>
+                        <p th:utext="${#numbers.formatDecimal(summary.withdrawal.amount.today, 1, 'COMMA', 2, 'POINT')}"></p>
+                    </div>
+                    <div class="item registration">
+                        <h2>Register New Member Yesterday</h2>
+                        <p th:utext="0"></p>
+                    </div>
+                    <div class="item deposit">
+                        <h2>Deposit Count New Member Yesterday</h2>
+                        <p th:utext="0"></p>
+                    </div>
+                    <div class="item deposit">
+                        <h2>Deposit Amount New Member Yesterday</h2>
+                        <p th:utext="0"></p>
+                    </div>
+                    <div class="item withdrawal">
+                        <h2>Withdrawal Count New Member Yesterday</h2>
+                        <p th:utext="0"></p>
+                    </div>
+                    <div class="item withdrawal">
+                        <h2>Withdrawal Amount New Member Yesterday</h2>
+                        <p th:utext="0"></p>
+                    </div>
+                    <div class="item deposit">
+                        <h2>Deposit Count Yesterday</h2>
+                        <p th:utext="${#numbers.formatDecimal(summary.deposit.count.yesterday, 1, 'COMMA', 0, 'POINT')}"></p>
+                    </div>
+                    <div class="item deposit">
+                        <h2>Deposit Amount Yesterday</h2>
+                        <p th:utext="${#numbers.formatDecimal(summary.deposit.amount.yesterday, 1, 'COMMA', 2, 'POINT')}"></p>
+                    </div>
+                    <div class="item withdrawal">
+                        <h2>Withdrawal Count Yesterday</h2>
+                        <p th:utext="${#numbers.formatDecimal(summary.withdrawal.count.yesterday, 1, 'COMMA', 0, 'POINT')}"></p>
+                    </div>
+                    <div class="item withdrawal">
+                        <h2>Withdrawal Amount Yesterday</h2>
+                        <p th:utext="${#numbers.formatDecimal(summary.withdrawal.amount.yesterday, 1, 'COMMA', 2, 'POINT')}"></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div th:replace="global/footer :: footer"></div>

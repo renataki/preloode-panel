@@ -116,4 +116,33 @@ app.controller("dashboard", ["$scope", "global", function($scope, global) {
     }
 
 
+    $(".summary-carousel").owlCarousel({
+        dots: false,
+        loop: true,
+        margin: 10,
+        nav: true,
+        navText: ["<i class=\"previous-white square-20\"></i>", "<i class=\"next-white square-20\"></i>"],
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            768: {
+                items: 3
+            },
+            1024: {
+                items: 4
+            },
+            1360: {
+                items: 5
+            },
+            1920: {
+                items: 6
+            }
+        }
+    })
+
+
 }]);

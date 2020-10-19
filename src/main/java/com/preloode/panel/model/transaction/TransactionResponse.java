@@ -41,6 +41,8 @@ public class TransactionResponse extends BaseResponse {
 
     private List<TransactionStatus> transactionStatusList;
 
+    private TransactionSummaryReference transactionSummary;
+
     private List<TransactionType> transactionTypeList;
 
     private User user;
@@ -54,7 +56,7 @@ public class TransactionResponse extends BaseResponse {
     }
 
 
-    public TransactionResponse(String response, boolean result, List<AdjustmentType> adjustmentTypeList, List<CompanyBranch> companyBranchList, List<Company> companyList, Map<String, Object> filter, String link, int page, List<PaymentAccount> paymentAccountList, List<PaymentMethod> paymentMethodList, int size, Transaction transaction, List<Transaction> transactionList, List<TransactionStatus> transactionStatusList, List<TransactionType> transactionTypeList, User user, List<User> userList) {
+    public TransactionResponse(String response, boolean result, List<AdjustmentType> adjustmentTypeList, List<CompanyBranch> companyBranchList, List<Company> companyList, Map<String, Object> filter, String link, int page, List<PaymentAccount> paymentAccountList, List<PaymentMethod> paymentMethodList, int size, Transaction transaction, List<Transaction> transactionList, List<TransactionStatus> transactionStatusList, TransactionSummaryReference transactionSummary, List<TransactionType> transactionTypeList, User user, List<User> userList) {
 
         super(response, result);
         this.adjustmentTypeList = adjustmentTypeList;
@@ -69,6 +71,7 @@ public class TransactionResponse extends BaseResponse {
         this.transaction = transaction;
         this.transactionList = transactionList;
         this.transactionStatusList = transactionStatusList;
+        this.transactionSummary = transactionSummary;
         this.transactionTypeList = transactionTypeList;
         this.user = user;
         this.userList = userList;
@@ -240,6 +243,20 @@ public class TransactionResponse extends BaseResponse {
     public void setTransactionStatusList(List<TransactionStatus> transactionStatusList) {
 
         this.transactionStatusList = transactionStatusList;
+
+    }
+
+
+    public TransactionSummaryReference getTransactionSummary() {
+
+        return transactionSummary;
+
+    }
+
+
+    public void setTransactionSummary(TransactionSummaryReference transactionSummary) {
+
+        this.transactionSummary = transactionSummary;
 
     }
 

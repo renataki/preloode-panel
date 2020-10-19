@@ -24,3 +24,63 @@ svg.chart-action-pie g g text {
     cursor: default;
     font-weight: 600;
 }
+
+#content .wrapper div.summary {
+    padding: 10px 35px;
+}
+
+div.summary .summary-carousel div.item {
+    background: rgba(247, 247, 247, 0.4);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+div.summary .summary-carousel div.registration {
+    background: rgba(31, 119, 180, 0.4);
+}
+
+div.summary .summary-carousel div.deposit {
+    background: rgba(44, 160, 44, 0.4);
+}
+
+div.summary .summary-carousel div.withdrawal {
+    background: rgba(214, 39, 40, 0.4);
+}
+
+div.summary-carousel .item h2 {
+    height: 40px;
+    line-height: 20px;
+    text-align: center;
+}
+
+div.summary-carousel .item p {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: center;
+}
+
+div.summary .summary-carousel div.owl-nav {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+div.summary-carousel .owl-nav button {
+    border-radius: 5px !important;
+    display: block !important;
+    height: 125px;
+    margin: 0 !important;
+    position: absolute;
+    width: 20px;
+}
+
+div.summary-carousel .owl-nav button.owl-prev {
+    left: -25px;
+}
+
+div.summary-carousel .owl-nav button.owl-next {
+    right: -25px;
+}
